@@ -13,23 +13,27 @@ public class Projeto {
         this.gerente = gerente;
         nomeGerente = gerente.getNome();
         this.finalizado = finalizado;
-        // bonus de 10 por cento se projeto finalizado
-        if (finalizado){
-            for (Subordinado s : equipe){
 
-                if (s == null) break;
-
-                s.setSalario(s.getSalario() + (s.getSalario() * 0.1));
-            }
-            gerente.setSalario(gerente.getSalario() + (gerente.getSalario() * 0.1));
-        }
-
-        for (Subordinado s : equipe){
-            if (s == null) break;
-            gerente.setSalario(gerente.getSalario() + (gerente.getSalario()*0.01));
-        }
-
+        aplicarRemuneração();
         setCustoTotal();
+    }
+
+    public void aplicarRemuneração(){
+        // bonus de 10% no salário se o projeto for finalizado
+        if (finalizado){
+            for (Subordinado s: equipe){
+                if (s != null){
+                    s.setSalario(s.getSalario()*1.10);
+                }
+            }
+            gerente.setSalario(gerente.getSalario()*1.10);
+        }
+        // bonus de 1% pro gerente por funcionario na equipe
+        for (Subordinado s: equipe){
+            if (s != null){
+            gerente.setSalario(gerente.getSalario()*1.10);
+            }
+        }
     }
 
     public void setCustoTotal() {
@@ -41,7 +45,6 @@ public class Projeto {
         if(equipe[i] != null) {
             salarioEquipe += equipe[i].getSalario();
             }
-            break;
         }
         custoTotal = salarioGerente + salarioEquipe;
     }
@@ -50,16 +53,24 @@ public class Projeto {
         StringBuilder sb = new StringBuilder();
         sb.append("==========================\n");
         sb.append("PROJETO " + this.nome + "\n");
+        sb.append("------------------------\n");
         sb.append("GERENTE: " + nomeGerente + "\n");
+        sb.append("------------------------\n");
+        sb.append(String.format("SALÁRIO GERENTE: %.2f \n", gerente.getSalario()));
 
         for (int i = 0; i < equipe.length; i++){
             if (equipe[i] != null){
-                sb.append("FUNCIONARIO " + (i+1) + " : " + equipe[i].getSalario() + "\n");
+                sb.append("------------------------\n");
+                // sb.append("FUNCIONARIO " + (i+1) + " : " + equipe[i].getSalario() + "\n");
+                sb.append(String.format("FUNCIONARIO %d \n", (i+1) ));
+                sb.append("NOME:" + equipe[i].getNome() + "\n");
+                sb.append(String.format("SALARIO: %.2f \n", equipe[i].getSalario()));
+                sb.append("------------------------\n");
             }
         }
 
-        sb.append( String.format("CUSTOS TOTAIS: %.2f", custoTotal) );
-
+        sb.append( String.format("CUSTOS TOTAIS: %.2f \n", custoTotal) );
+        sb.append("==========================\n");
         return sb.toString();
     }
 }

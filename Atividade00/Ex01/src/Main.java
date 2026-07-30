@@ -3,6 +3,8 @@ public class Main{
     private Projeto[] projetos = new Projeto[100];
     private Subordinado[] funcionarios = new Subordinado[100];
 
+    private Gerente[] gerentes = new Gerente[100];
+
     void main() {
         while (true) {
             IO.println("-------------PROJETOS------------");
@@ -30,10 +32,11 @@ public class Main{
 
         for (int i = 0; i < qtdeSubordinados; i++) {
             double salario = Double.parseDouble(IO.readln("Digite o salario do funcionario " + (i + 1) + " :"));
-            funcionarios[i] = new Subordinado(salario);
+            String nome = IO.readln("Digite o nome do funcionario: ");
+            funcionarios[i] = new Subordinado(salario, nome);
         }
 
-        String inFinalizado = IO.readln("Projeto finalizado (s/n): ");
+        String inFinalizado = IO.readln("Projeto finalizado? (s/n): ");
         boolean finalizado = false;
 
         if (inFinalizado.charAt(0) == 's'){
@@ -49,6 +52,7 @@ public class Main{
             }
         }
     }
+
     public void mostrarProjetos(){
         for (int i = 0; i < projetos.length; i++) {
             if(projetos[i] == null){

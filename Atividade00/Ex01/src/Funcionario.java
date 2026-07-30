@@ -1,8 +1,10 @@
 public class Funcionario {
     private double salario;
+    private String nome;
 
-    public Funcionario(double salario) {
+    public Funcionario(double salario, String nome) {
         this.salario = salario;
+        this.nome = nome;
     }
 
     public double getSalario() {
@@ -13,4 +15,11 @@ public class Funcionario {
         this.salario = salario;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 }

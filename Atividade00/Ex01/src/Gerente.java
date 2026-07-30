@@ -1,17 +1,14 @@
 public class Gerente extends Funcionario{
 
-    private String nome;
-
     public Gerente(Double salario, String nome) {
-        super(salario);
-        this.nome = nome;
+        super(salario, nome);
     }
 
     public String getNome() {
-        return nome;
+        return super.getNome();
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        super.setNome(nome);
     }
 }
