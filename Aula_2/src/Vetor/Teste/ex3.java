@@ -14,7 +14,7 @@ public class ex3 {
         vetorEstatico.inserir(3, "teste");
         vetorEstatico.imprimir();
 
-        vetorEstatico.remover(1);
+        vetorEstatico.remover(0);
 
         vetorEstatico.imprimir();
     }
