@@ -70,6 +70,7 @@ public class VetorEstatico {
         for(int i = indice; i < tamanhoPreenchido; i++){
             elementos[i] = elementos[i+1];
         }
+        elementos[tamanhoPreenchido-1] = null;
         tamanhoPreenchido--;
     }
 
