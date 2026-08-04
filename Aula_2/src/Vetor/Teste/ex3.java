@@ -17,6 +17,10 @@ public class ex3 {
         vetorEstatico.remover(0);
 
         vetorEstatico.imprimir();
+
+        vetorEstatico.inserir(0, "R");
+
+        vetorEstatico.imprimir();
     }
 
 }

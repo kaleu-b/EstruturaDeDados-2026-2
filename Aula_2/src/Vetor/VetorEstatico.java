@@ -10,17 +10,6 @@ public class VetorEstatico {
         this.tamanhoPreenchido = 0;
     }
 
-//    public void inserir(String elemento){
-//
-//        for (int i = 0; i < elementos.length; i++){
-//            if(elementos[i] == null){
-//                elementos[i] = elemento;
-//                return;
-//            }
-//        }
-//        System.out.println("Não tem posições disponíveis.");
-//    }
-
     public void inserir(String elemento){
         if(tamanhoPreenchido < elementos.length) {
             elementos[tamanhoPreenchido] = elemento;
@@ -62,6 +51,16 @@ public class VetorEstatico {
         return tamanhoPreenchido;
     }
 
+    public String ler(int indice){
+
+        if (indice >= 0 && indice < tamanhoPreenchido){
+            return elementos[indice];
+        }else {
+            throw new IndexOutOfBoundsException("Indice invalido :(");
+        }
+
+    }
+
     public void remover(int indice){
         if (indice < 0 || indice > elementos.length){
             System.out.println("Posição inválida");
@@ -72,6 +71,18 @@ public class VetorEstatico {
             elementos[i] = elementos[i+1];
         }
         tamanhoPreenchido--;
+    }
+
+
+    public void removerUltimo(){
+
+        if (tamanhoPreenchido > 0){
+            elementos[tamanhoPreenchido-1] = null;
+            tamanhoPreenchido--;
+        }else {
+            System.out.println("Vetor vazio");
+        }
+
     }
 
 }
