@@ -102,4 +102,24 @@ public class AgendaTelefonica {
         }   
     }
 
+
+      private void expandir(){
+        String[] novo = new String[contatos.length*2];
+        for (int i = 0; i < contatos.length; i++) {
+            novo[i] = contatostos[i];
+        }
+        this.contatos = novo;
+    }
+
+    private void reduzir(){
+        if (tamanhoPreenchido <= elementos.length/4) {
+            // quanto diminuir??????????????? **METADE**!!!!!!!!!!!!!!!
+            String[] novo = new String[elementos.length / 2];
+            for (int i = 0; i < tamanhoPreenchido; i++) {
+                novo[i] = elementos[i];
+            }
+            elementos = novo;
+        }
+    }
+
 }
