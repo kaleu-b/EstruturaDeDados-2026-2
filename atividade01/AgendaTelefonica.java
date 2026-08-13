@@ -25,6 +25,7 @@ public class AgendaTelefonica {
         } else {
             System.out.println("Não existe posição disponivel");
         }
+        expandir();
     }
 
     public void remover(int indice) {
@@ -37,6 +38,7 @@ public class AgendaTelefonica {
         }
         contatos[tamanho-1] = null;
         tamanho--;
+        reduzir();
     }
 
     public void remover(Contato contato) {
@@ -48,6 +50,7 @@ public class AgendaTelefonica {
             tamanho--;
             return;
         }
+        reduzir();
     }
 
     public void buscar(Contato contato) {
@@ -106,7 +109,7 @@ public class AgendaTelefonica {
       private void expandir(){
         String[] novo = new String[contatos.length*2];
         for (int i = 0; i < contatos.length; i++) {
-            novo[i] = contatostos[i];
+            novo[i] = contatos[i];
         }
         this.contatos = novo;
     }
@@ -115,10 +118,10 @@ public class AgendaTelefonica {
         if (tamanhoPreenchido <= elementos.length/4) {
             // quanto diminuir??????????????? **METADE**!!!!!!!!!!!!!!!
             String[] novo = new String[elementos.length / 2];
-            for (int i = 0; i < tamanhoPreenchido; i++) {
-                novo[i] = elementos[i];
+            for (int i = 0; i < tamanho; i++) {
+                novo[i] = contatos[i];
             }
-            elementos = novo;
+            this.contatos = novo;
         }
     }
 
