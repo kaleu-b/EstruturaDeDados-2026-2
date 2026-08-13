@@ -1,16 +1,17 @@
-package Vetor;
+package vetor;
 
-public class VetorDinamico {
+public class Vetor<T> {
 
-    private String elementos[];
+    private T[] elementos;
     private int tamanhoPreenchido;
 
-    public VetorDinamico(int quantidadePosicoes){
-        elementos = new String[quantidadePosicoes];
-        this.tamanhoPreenchido = 0;
+    @SuppressWarnings("unchecked")
+    public Vetor(int quantidade){
+        elementos = (T[]) new Object[quantidade];
+        tamanhoPreenchido = 0;
     }
 
-    public void inserir(String elemento){
+    public void inserir(T elemento){
         if(tamanhoPreenchido == elementos.length) {
             expandir();
         }
@@ -18,8 +19,9 @@ public class VetorDinamico {
         tamanhoPreenchido++;
     }
 
+    @SuppressWarnings("unchecked")
     private void expandir(){
-        String[] novo = new String[elementos.length*2];
+        T[] novo = (T[]) new Object[elementos.length*2];
         for (int i = 0; i < elementos.length; i++) {
             novo[i] = elementos[i];
         }
@@ -28,16 +30,17 @@ public class VetorDinamico {
 
     public void imprimir(){
         System.out.print("[");
-        for (String elemento : elementos) {
+        for (T elemento : elementos) {
             System.out.print(elemento + ",");
         }
         System.out.println("]");
     }
 
+    @SuppressWarnings("unchecked")
     private void reduzir(){
         if (tamanhoPreenchido <= elementos.length/4) {
             // quanto diminuir??????????????? **METADE**!!!!!!!!!!!!!!!
-            String[] novo = new String[elementos.length / 2];
+            T[] novo = (T[]) new Object[elementos.length / 2];
             for (int i = 0; i < tamanhoPreenchido; i++) {
                 novo[i] = elementos[i];
             }

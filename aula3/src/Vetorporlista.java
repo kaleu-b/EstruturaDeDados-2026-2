@@ -1,4 +1,4 @@
-import Vetor.VetorEstatico;
+import vetor.VetorEstatico;
 
 public class Vetorporlista {
 

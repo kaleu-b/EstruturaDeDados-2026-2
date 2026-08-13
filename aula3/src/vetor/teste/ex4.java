@@ -1,6 +1,6 @@
-package Vetor.Teste;
+package vetor.teste;
 
-import Vetor.VetorDinamico;
+import vetor.VetorDinamico;
 
 public class ex4 {
 

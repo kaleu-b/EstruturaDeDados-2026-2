@@ -1,19 +1,18 @@
-package Vetor.Teste;
+package vetor.teste;
 
-import Vetor.VetorEstatico;
+import vetor.VetorEstatico;
 
-public class ex1 {
+public class ex2 {
 
-    static void main(){
 
-        VetorEstatico vetorEstatico = new VetorEstatico(3);
+    void main(){
+        VetorEstatico vetorEstatico = new VetorEstatico(10);
 
         vetorEstatico.inserir("A");
         vetorEstatico.inserir("B");
         vetorEstatico.inserir("C");
         vetorEstatico.inserir("boom");
-
+        vetorEstatico.inserir(3, "teste");
         vetorEstatico.imprimir();
     }
-
 }

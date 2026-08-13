@@ -1,4 +1,4 @@
-package Vetor;
+package vetor;
 
 public class VetorEstatico {
 
