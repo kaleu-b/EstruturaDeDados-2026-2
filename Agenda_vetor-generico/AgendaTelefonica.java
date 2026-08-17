@@ -4,32 +4,54 @@ public class AgendaTelefonica {
 
     public AgendaTelefonica(int quantidade) {
         contatos = new Vetor<>(quantidade);
-        this.tamanho = 0;
     }
 
     public void adicionar(Contato contato) {
-        for (int i = 0; i < tamanho; i++) {
-            if (contatos[i].getNome().equals(contato.getNome())) {
+        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+            /*if (contatos.[i].getNome().equals(contato.getNome())) {
                 System.out.println("Nome repetido!");
                 return;
             }
             if (contatos[i].getTelefones().equals(contato.getTelefones())) {
                 System.out.println("Telefone repetido!");
                 return;
+            }*/
+
+            if(contatos.get(i).getNome().equals(contato)){
+                System.out.println("Nome repetido!");
+                return;
             }
+
+            if(contatos.get(i).getTelefones().equals(contato.getTelefones())){
+                System.out.println("Telefone repetido!");
+                return;
+            }
+
         }
 
-        if (tamanho < contatos.length) {
+       /* if (tamanho < contatos.length) {
             contatos[tamanho] = contato;
             tamanho++;
         } else {
             System.out.println("Não existe posição disponivel");
-        }
-        expandir();
+        }/*
+
+        */
+       // expandir();
+
+        contatos.inserir(contato);
     }
 
     public void remover(int indice) {
-        if (indice < 0 || indice >= tamanho) {
+        
+        if (indice < 0 || indice >= contatos.obterPreenchido()){
+            System.out.println("Indice invalido");
+            return;
+        }
+
+        contatos.remover(indice);
+
+         /*if (indice < 0 || indice >= tamanho) {
             System.out.println("Indice Inválido");
             return;
         }
@@ -38,11 +60,20 @@ public class AgendaTelefonica {
         }
         contatos[tamanho-1] = null;
         tamanho--;
-        reduzir();
+        reduzir();*/
     }
+        
+
 
     public void remover(Contato contato) {
-        for (int i = 0; i < tamanho; i++) {
+
+       for (int i = 0; i<contatos.obterPreenchido(); i++){
+           if (contatos.get(i).getNome().equals(contato.getNome()) ||
+             contatos.get(i).getTelefones().equals(contato.getTelefones())){
+             contatos.remover(i);
+           }
+       }
+        /*for (int i = 0; i < tamanho; i++) {
             if (contatos[i].getNome().equals(contato.getNome()) || contatos[i].getTelefones().equals(contato.getTelefones())) {
                 remover(i);
             }
@@ -50,14 +81,21 @@ public class AgendaTelefonica {
             tamanho--;
             return;
         }
-        reduzir();
+        reduzir();*/
     }
 
     public void buscar(Contato contato) {
-        for (int i = 0; i < tamanho; i++) {
+        /*for (int i = 0; i < tamanho; i++) {
             if (contatos[i].getNome().equals(contato.getNome()) || contatos[i].getTelefones().equals(contato.getTelefones())) {
                 System.out.println("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
                 return;
+            }
+        }*/
+
+        for (int i=0; i<contatos.obterPreenchido(); i++){
+            if (contatos.get(i).getNome().equals(contato.getNome()) || contatos.get(i).getTelefones().equals(contato.getTelefones())){
+                //System.out.println("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
+                IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
             }
         }
     }
@@ -85,12 +123,16 @@ public class AgendaTelefonica {
 
     public void listar() {
         System.out.print("[ ");
-        for (int i = 0; i < tamanho; i++) {
+
+        for (int i = 0; i<contatos.obterPreenchido(); i++){
+            IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
+        }
+        /*for (int i = 0; i < tamanho; i++) {
             System.out.print("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
             if (i < contatos.length - 1) {
                 System.out.println("");
             }
-        }
+        }*/
         System.out.print(" ]");
         System.out.println("");
     }
@@ -106,7 +148,7 @@ public class AgendaTelefonica {
     }
 
 
-      private void expandir(){
+     /* private void expandir(){
         String[] novo = new String[contatos.length*2];
         for (int i = 0; i < contatos.length; i++) {
             novo[i] = contatos[i];
@@ -123,6 +165,6 @@ public class AgendaTelefonica {
             }
             this.contatos = novo;
         }
-    }
+    }*/
 
 }

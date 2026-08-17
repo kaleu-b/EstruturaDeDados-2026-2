@@ -9,6 +9,10 @@ public class Vetor<T> {
         tamanhoPreenchido = 0;
     }
 
+    public T get(int i){
+        return elementos[i];
+    }
+
     public void inserir(T elemento){
         if(tamanhoPreenchido == elementos.length) {
             expandir();
@@ -62,6 +66,10 @@ public class Vetor<T> {
 
     public int obterTamanho(){
         return elementos.length;
+    }
+
+    public int obterPreenchido(){
+        return tamanhoPreenchido;
     }
 
 }
