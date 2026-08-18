@@ -19,6 +19,35 @@ public class Vetor<T> {
         tamanhoPreenchido++;
     }
 
+    public int existeIgual(T elemento){
+        int pos = -1;
+        for (int i = 0; i < tamanhoPreenchido; i++) {
+            if (elemento == elementos[i]){
+                return i;
+            }
+        }
+        return pos;
+    }
+
+    public void inserir(T elemento, int index){
+        if(index> elementos.length || index<0)return;
+
+        if(tamanhoPreenchido == elementos.length){
+           expandir();
+        }
+        // deslocamento
+        for (int i = tamanhoPreenchido; i > index; i--) {
+            elementos[i] = elementos[i-1];
+        }
+
+        elementos[index] = elemento;
+        tamanhoPreenchido++;
+    }
+
+    public T get(int index){
+        return elementos[index];
+    }
+
     @SuppressWarnings("unchecked")
     private void expandir(){
         T[] novo = (T[]) new Object[elementos.length*2];
