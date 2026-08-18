@@ -45,7 +45,9 @@ public class Telefone {
         Contato[] contatoIguaisTeste = agenda.buscarprefixo("Gabriel");
 
         for (int i = 0; i < contatoIguaisTeste.length; i++) {
-            IO.println(contatoIguaisTeste[i]);
+            IO.println(contatoIguaisTeste[i].getEmail());
+            IO.println(contatoIguaisTeste[i].getNome());
+            IO.println(contatoIguaisTeste[i].getTelefones());
         }
 
     }

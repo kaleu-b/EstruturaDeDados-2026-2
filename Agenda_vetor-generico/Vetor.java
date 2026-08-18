@@ -21,6 +21,16 @@ public class Vetor<T> {
         tamanhoPreenchido++;
     }
 
+    public void substituir(T elemento, int posicao){
+
+        if(posicao<0 || posicao > elementos.length)return;
+
+        if(tamanhoPreenchido == elementos.length) {
+            expandir();
+        }
+        elementos[posicao] = elemento;
+    }
+
     @SuppressWarnings("unchecked")
     private void expandir(){
         T[] novo = (T[]) new Object[elementos.length*2];

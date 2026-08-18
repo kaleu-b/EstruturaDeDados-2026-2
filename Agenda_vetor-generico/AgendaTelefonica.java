@@ -1,6 +1,5 @@
 public class AgendaTelefonica {
     private Vetor<Contato> contatos;
-    private int tamanho;
 
     public AgendaTelefonica(int quantidade) {
         contatos = new Vetor<>(quantidade);
@@ -27,6 +26,7 @@ public class AgendaTelefonica {
                 return;
             }
 
+            contatos.inserir(contato);
         }
 
        /* if (tamanho < contatos.length) {
@@ -101,21 +101,36 @@ public class AgendaTelefonica {
     }
 
     public Contato[] buscarprefixo(String nome) {
-        Contato[] contatosIguais = new Contato[tamanho];
+        Contato[] contatosIguais;
         int tamanhoInicial = 0;
-        for (int i = 0; i < tamanho; i++) {
+        // obtendo quantidade de elementos com mesmo nome
+        for(int i = 0; i< contatos.obterPreenchido(); i++){
+            if(contatos.get(i).getNome().startsWith(nome)){
+                tamanhoInicial++;
+            }
+        }
+
+        contatosIguais = new Contato[tamanhoInicial];
+        int preenchido = 0;
+        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+            if(contatos.get(i).getNome().startsWith(nome)) {
+                contatosIguais[preenchido] = contatos.get(i);
+                preenchido++;
+            }
+        }
+        /*for (int i = 0; i < tamanho; i++) {
             if (contatos[i].getNome().startsWith(nome)) {
                 contatosIguais[tamanhoInicial] = contatos[i]; 
                 tamanhoInicial++;
             }
-        }
+        }*/
         return contatosIguais;
     }
 
     public void atualizar(Contato contatoantigo, Contato contatonovo) {
-        for (int i = 0; i < tamanho; i++) {
-            if (contatos[i].getNome().equals(contatoantigo.getNome()) || contatos[i].getTelefones().equals(contatoantigo.getTelefones())) {
-                contatos[i] = contatonovo;
+        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+            if (contatos.get(i).getNome().equals(contatoantigo.getNome()) || contatos.get(i).getTelefones().equals(contatoantigo.getTelefones())) {
+                contatos.substituir(contatonovo, i);
                 return;
             }
         }
@@ -138,14 +153,11 @@ public class AgendaTelefonica {
     }
 
     public void manipulacao(Contato[] contato) {
-        if ( (tamanho + contato.length) > contatos.length ){
-            IO.print("Adicionando mais contatos do que pode.");
-        }else{
             for (int i = 0; i < contato.length; i++){
                 adicionar(contato[i]);
             }
         }   
-    }
+}
 
 
      /* private void expandir(){
@@ -167,4 +179,3 @@ public class AgendaTelefonica {
         }
     }*/
 
-}
