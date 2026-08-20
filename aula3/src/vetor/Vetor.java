@@ -19,6 +19,10 @@ public class Vetor<T> {
         tamanhoPreenchido++;
     }
 
+    public T get(int i){
+        return elementos[i];
+    }
+
     @SuppressWarnings("unchecked")
     private void expandir(){
         T[] novo = (T[]) new Object[elementos.length*2];
