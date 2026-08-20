@@ -62,8 +62,77 @@ public class Vetor<T> {
         reduzir();
     }
 
+    // retorna um booleano caso não seja necessária a posição do
+    // item existente
+    public boolean contem(T elemento) {
+        return localizar(elemento) != -1;
+    }
+
+    public void inserirOrdenadov2(T valor) {
+
+        if (localizar(valor) != -1) {
+            System.out.println("Valor " + valor + " já existe na lista.");
+            return;
+        }
+        if (tamanhoPreenchido == 0) {
+            inserir(valor, tamanhoPreenchido);
+            return;
+        }
+        for (int i = 0; i < tamanhoPreenchido; i++) {
+            if ((Integer)valor < (Integer) elementos[i]) {
+                inserir(valor,i);
+                break;
+            }
+        }
+    }
+
+    public void inserir(T elemento, int index){
+        if(index> elementos.length || index<0)return;
+
+        if(tamanhoPreenchido == elementos.length){
+            expandir();
+        }
+        // deslocamento
+        for (int i = tamanhoPreenchido; i > index; i--) {
+            elementos[i] = elementos[i-1];
+        }
+
+        elementos[index] = elemento;
+        tamanhoPreenchido++;
+    }
+
+    public int localizar(T elemento) {
+        for (int i = 0; i < tamanhoPreenchido; i++) {
+            if (elementos[i] != null && elementos[i] == elemento) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void inserirOrdenado(T valor) {
+        if (localizar(valor) != -1) {
+            System.out.println("Valor " + valor + " já existe na lista.");
+            return;
+        }
+        if (tamanhoPreenchido == elementos.length) {
+            expandir();
+        }
+        int i;
+        for (i = tamanhoPreenchido - 1; i >= 0; i--) {
+            Integer atual = (Integer) elementos[i];
+            if (atual > (Integer) valor) {
+                elementos[i + 1] = elementos[i]; // desloca para a direita
+            } else {
+                break;
+            }
+        }
+        elementos[i + 1] = valor;
+        tamanhoPreenchido++;
+    }
+
     public int obterTamanho(){
-        return elementos.length;
+        return tamanhoPreenchido;
     }
 
 }
