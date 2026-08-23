@@ -2,6 +2,10 @@ import java.util.Random;
 
 public class VetorInteiros {
 
+    private int comparacoes = 0;
+    private long inicio;// = System.nanoTime();
+    private long fim;// = System.nanoTime();
+
     Random r = new Random(67);
     public Vetor<Integer> vetor;
 
