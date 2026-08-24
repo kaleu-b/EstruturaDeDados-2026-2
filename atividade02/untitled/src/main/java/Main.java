@@ -13,21 +13,32 @@ public class Main {
     private final Random random = new Random(67);
 
     void main() throws InterruptedException {
-        IO.println("populando os vetores com numeros aleatorios: ");
-        Thread.sleep(2000);
+        IO.println("  populando os vetores com numeros aleatorios:   ");
+        Thread.sleep(4000);
         IO.println("vetor de mil elementos: ");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         popular(vetorMil, 1000, 2000);
         IO.println("vetor de 10 mil elementos: ");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         popular(vetorDezMil, 10000, 2000);
         IO.println("vetor de 100 mil elementos: ");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         popular(vetorCemMil, 100000, 200000);
 
-        buscaLinear(vetorMil, 0);
-
-        buscaBinaria(vetorCemMil, 100000 - 1);
+        IO.println("   Usando busca linear em todos os vetores:   ");
+        Thread.sleep(4000);
+        IO.println(" Busacando o primeiro elemento no Vetor de mil: (melhor caso)" );
+        Thread.sleep(2000);
+        buscaLinear(vetorMil, vetorMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de mil: (caso intermediário)");
+        buscaLinear(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso): ");
+        buscaLinear(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("buscando elemento inexistente no vetor de mil: (pior caso)");
+        buscaLinear(vetorMil, 4000);
     }
 
     private void popular(Vetor<Integer> vetor, int quantidade, int range) {

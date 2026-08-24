@@ -73,7 +73,7 @@ public class Vetor<T> {
     public void inserirOrdenadov2(T valor) {
 
         if (localizar(valor) != -1) {
-            System.out.println("Valor " + valor + " já existe na lista.");
+           // System.out.println("Valor " + valor + " já existe na lista.");
             return;
         }
         if (tamanhoPreenchido == 0) {
@@ -114,7 +114,7 @@ public class Vetor<T> {
 
     public void inserirOrdenado(T valor) {
         if (localizar(valor) != -1) {
-            System.out.println("Valor " + valor + " já existe na lista.");
+            //System.out.println("Valor " + valor + " já existe na lista.");
             return;
         }
         if (tamanhoPreenchido == elementos.length) {
