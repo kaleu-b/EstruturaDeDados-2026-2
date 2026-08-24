@@ -20,25 +20,102 @@ public class Main {
         popular(vetorMil, 1000, 2000);
         IO.println("vetor de 10 mil elementos: ");
         Thread.sleep(2000);
-        popular(vetorDezMil, 10000, 2000);
+        popular(vetorDezMil, 10000, 20000);
         IO.println("vetor de 100 mil elementos: ");
         Thread.sleep(2000);
         popular(vetorCemMil, 100000, 200000);
 
         IO.println("   Usando busca linear em todos os vetores:   ");
         Thread.sleep(4000);
-        IO.println(" Busacando o primeiro elemento no Vetor de mil: (melhor caso)" );
+        IO.println(" Buscando o primeiro elemento no Vetor de mil: (melhor caso: O(1))" );
         Thread.sleep(2000);
         buscaLinear(vetorMil, vetorMil.get(0));
         Thread.sleep(3000);
-        IO.println("Buscando o elemento do meio de Vetor de mil: (caso intermediário)");
+        IO.println("Buscando o elemento do meio de Vetor de mil: (caso intermediário: O(n/2))");
         buscaLinear(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
-        IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso): ");
+        IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("buscando elemento inexistente no vetor de mil: (pior caso)");
-        buscaLinear(vetorMil, 4000);
+        IO.println("Buscando elemento inexistente no vetor de mil: (pior caso: O(n))");
+        buscaLinear(vetorMil, -2);
+        Thread.sleep(4000);
+
+        IO.println(" Buscando o primeiro elemento no Vetor de dez mil: (melhor caso: O(1))" );
+        Thread.sleep(2000);
+        buscaLinear(vetorDezMil, vetorDezMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de dez mil: (caso intermediário: O(n/2))");
+        buscaLinear(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de dez mil (segundo pior caso: O(n)): ");
+        buscaLinear(vetorDezMil, vetorDezMil.get(vetorDezMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("Buscando elemento inexistente no vetor de dez mil: (pior caso: O(n))");
+        Thread.sleep(3000);
+        buscaLinear(vetorDezMil, -2);
+        Thread.sleep(4000);
+
+        IO.println(" Buscando o primeiro elemento no Vetor de cem mil: (melhor caso: O(1))" );
+        Thread.sleep(2000);
+        buscaLinear(vetorCemMil, vetorCemMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de cem mil: (caso intermediário: O(n/2))");
+        buscaLinear(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
+        buscaLinear(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("Buscando elemento inexistente no vetor de cem mil: (pior caso: O(n))");
+        Thread.sleep(3000);
+        buscaLinear(vetorCemMil, -2);
+        Thread.sleep(4000);
+
+        IO.println("   Usando busca binaria em todos os vetores:   ");
+        Thread.sleep(4000);
+        IO.println(" Buscando o primeiro elemento no Vetor de mil: (melhor caso: O(1))" );
+        Thread.sleep(2000);
+        buscaBinaria(vetorMil, vetorMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de mil: (caso intermediário: O(n/2))");
+        buscaBinaria(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso: O(n)): ");
+        buscaBinaria(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("Buscando elemento inexistente no vetor de mil: (pior caso: O(n))");
+        buscaBinaria(vetorMil, -2);
+        Thread.sleep(4000);
+
+        IO.println(" Buscando o primeiro elemento no Vetor de dez mil: (melhor caso: O(1))" );
+        Thread.sleep(2000);
+        buscaBinaria(vetorDezMil, vetorDezMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de dez mil: (caso intermediário: O(n/2))");
+        buscaBinaria(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de dez mil (segundo pior caso: O(n)): ");
+        buscaBinaria(vetorDezMil, vetorDezMil.get(vetorDezMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("Buscando elemento inexistente no vetor de dez mil: (pior caso: O(n))");
+        Thread.sleep(3000);
+        buscaBinaria(vetorDezMil, -2);
+        Thread.sleep(4000);
+
+        IO.println(" Buscando o primeiro elemento no Vetor de cem mil: (melhor caso: O(1))" );
+        Thread.sleep(2000);
+        buscaBinaria(vetorCemMil, vetorCemMil.get(0));
+        Thread.sleep(3000);
+        IO.println("Buscando o elemento do meio de Vetor de cem mil: (caso intermediário: O(n/2))");
+        buscaBinaria(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
+        Thread.sleep(3000);
+        IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
+        buscaBinaria(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
+        Thread.sleep(3000);
+        IO.println("Buscando elemento inexistente no vetor de cem mil: (pior caso: O(n))");
+        Thread.sleep(3000);
+        buscaBinaria(vetorCemMil, -2);
+        Thread.sleep(4000);
     }
 
     private void popular(Vetor<Integer> vetor, int quantidade, int range) {
@@ -59,7 +136,7 @@ public class Main {
     // menos de 1ms para ser concluida,
     // e mantemos precisão em casos onde a busca
     private double calcTempo() {
-        return (double) (fim - inicio) / 1_000_000;
+        return (double) (fim - inicio) / 1000000;
     }
     // lista os dados
     private void listarEstatisticas(int comparacoes, int indice) {
