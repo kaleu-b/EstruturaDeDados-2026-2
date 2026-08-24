@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -116,6 +119,14 @@ public class Main {
         Thread.sleep(3000);
         buscaBinaria(vetorCemMil, -2);
         Thread.sleep(4000);
+
+        IO.println(" Comparando com o metodo Arrays.binarySearch do java: ");
+        Thread.sleep(3000);
+        IO.println("medindo os tempos do vetor mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        Arrays.binarySearch( Arrays.copyOf(vetorMil, 999) , vetorMil.get(0));
     }
 
     private void popular(Vetor<Integer> vetor, int quantidade, int range) {
