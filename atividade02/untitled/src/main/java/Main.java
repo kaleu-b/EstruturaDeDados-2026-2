@@ -11,8 +11,12 @@ public class Main {
         // como regra geral, o range vai ser
         // igual ao valor da quantidade * 2
         vetorMil.popular(1000, 2000);
-        vetorDezMil.popular(10000, 2000);
-        vetorCemMil.popular(100000, 200000);
+        vetorMil.buscaLinear(vetorMil, 0);
+
+        //vetorDezMil.popular(10000, 2000);
+        //vetorCemMil.popular(100000, 200000);
+        //vetorCemMil.buscaLinear(vetorCemMil, (100000-1));
+        //vetorMil.listar();
     }
 
 }
