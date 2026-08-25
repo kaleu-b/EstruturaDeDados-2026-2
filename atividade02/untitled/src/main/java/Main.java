@@ -40,83 +40,12 @@ public class Main {
         testesVetorDezMilBinario();
         testesVetorCemMilBinario();
 
-        Object[] copiaMil =  vetorMil.toArray();
-        Object[] copiaDezMil =  vetorDezMil.toArray();
-        Object[] copiaCemMil =  vetorCemMil.toArray();
-
         IO.println(" Comparando com o metodo Arrays.binarySearch do java: ");
         Thread.sleep(3000);
-        IO.println("medindo os tempos do vetor mil: ");
-        Thread.sleep(2000);
-        IO.println("primeiro elemento: ");
-        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
-        inicio = System.nanoTime();
-        Arrays.binarySearch( copiaMil, copiaMil[0]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o valor do meio: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaMil, copiaMil[(copiaMil.length-1)/2]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o ultimo elemento: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaMil, copiaMil[copiaMil.length-1]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
 
-        IO.println("medindo os tempos do vetor dez mil: ");
-        Thread.sleep(2000);
-        IO.println("primeiro elemento: ");
-        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
-        inicio = System.nanoTime();
-        Arrays.binarySearch( copiaDezMil, copiaDezMil[0]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o valor do meio: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaDezMil, copiaDezMil[(copiaDezMil.length-1)/2 ]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o ultimo elemento: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaDezMil, copiaDezMil[copiaDezMil.length-1]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-
-        IO.println("medindo os tempos do vetor de 100 mil: ");
-        Thread.sleep(2000);
-        IO.println("primeiro elemento: ");
-        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
-        inicio = System.nanoTime();
-        Arrays.binarySearch( copiaCemMil, copiaCemMil[0]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o valor do meio: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaCemMil, copiaCemMil[(copiaCemMil.length-1)/2]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
-        IO.println("Buscando o ultimo elemento: ");
-        Thread.sleep(2000);
-        inicio = System.nanoTime();
-        Arrays.binarySearch(copiaCemMil, copiaCemMil[copiaCemMil.length-1]);
-        fim = System.nanoTime();
-        IO.println(estatisticaTempo());
-        Thread.sleep(2000);
+        testeBinarySearchMil();
+        testeBinarySearchDezMil();
+        testeBinarySearchCemMil();
     }
 
     public void testesVetorMilLinear() throws InterruptedException {
@@ -199,6 +128,87 @@ public class Main {
         IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
         buscaBinaria(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
         Thread.sleep(3000);
+    }
+
+    public void testeBinarySearchMil() throws InterruptedException {
+        Object[] copiaMil =  vetorMil.toArray();
+        IO.println("medindo os tempos do vetor mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaMil, copiaMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaMil, copiaMil[(copiaMil.length-1)/2]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaMil, copiaMil[copiaMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+    }
+
+    public void testeBinarySearchDezMil() throws InterruptedException {
+        Object[] copiaDezMil =  vetorDezMil.toArray();
+        IO.println("medindo os tempos do vetor dez mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaDezMil, copiaDezMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaDezMil, copiaDezMil[(copiaDezMil.length-1)/2 ]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaDezMil, copiaDezMil[copiaDezMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+    }
+
+    public void testeBinarySearchCemMil() throws InterruptedException {
+        Object[] copiaCemMil =  vetorCemMil.toArray();
+        IO.println("medindo os tempos do vetor de 100 mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaCemMil, copiaCemMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaCemMil, copiaCemMil[(copiaCemMil.length-1)/2]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaCemMil, copiaCemMil[copiaCemMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
     }
 
     private void popular(Vetor<Integer> vetor, int quantidade, int range) {
