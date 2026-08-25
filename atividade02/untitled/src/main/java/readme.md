@@ -1,10 +1,10 @@
 # 6. Escreva uma discussão sobre os resultados obtidos, destacando os cenários de melhor caso, caso médio e pior caso para ambos os algoritmos.
 
-O melhor caso para os algoritmos de busca linear é onde o elemento buscado é o primeiro elemento (leva 1 comparação em todos os casos com todos os vetores, com 1 comparação feita)
+O melhor caso para os algoritmos de busca linear é onde o elemento buscado é o primeiro elemento (leva 1 comparação em todos os casos com todos os vetores)
 
 O caso intermediário é onde o elemento buscado está no meio (levando n/2, ou 500 comparações para o vetor de mil, 5000 para o de 10 mil, 50000 para o de cem mil)
 
-O pior caso é onde o elemento buscado está nas últimas posições (levando n, ou 1000 comparações para o vetor de mil, 10000 para o de 10 mil e 100000 para o de cem mil)
+O pior caso é onde o elemento buscado está nas últimas posições (levando 1000 comparações para o vetor de mil, 10000 para o de 10 mil e 100000 para o de cem mil)
 
 Para a busca binária o melhor caso é onde o elemento buscado está no meio do vetor, levando 1 comparação em todos os casos.
 
@@ -31,4 +31,4 @@ binaria: O(log n) (a cada etapa divide pela metade as possibilidades, fazendo co
 
 # Avalie se há diferença significativa de tempo entre a implementação própria e a versão otimizada da biblioteca Java.
 
-A única diferença significativa de tempo foi na busca do primeiro elemento do vetor de mil elementos, tendo levado, em média, 0.5 ms a mais comparado com a nossa implementação própria.
+A única diferença significativa de tempo foi na primeira busca feita, onde demora significantemente mais. Mas nas buscas seguinte, não tem diferenças significativas.
