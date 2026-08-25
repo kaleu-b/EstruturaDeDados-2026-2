@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -30,6 +28,98 @@ public class Main {
 
         IO.println("   Usando busca linear em todos os vetores:   ");
         Thread.sleep(4000);
+
+        testesVetorMilLinear();
+        testesVetorDezMilLinear();
+        testesVetorCemMilLinear();
+
+        IO.println("   Usando busca binaria em todos os vetores:   ");
+        Thread.sleep(4000);
+
+        testesVetorMilBinario();
+        testesVetorDezMilBinario();
+        testesVetorCemMilBinario();
+
+        Object[] copiaMil =  vetorMil.toArray();
+        Object[] copiaDezMil =  vetorDezMil.toArray();
+        Object[] copiaCemMil =  vetorCemMil.toArray();
+
+        IO.println(" Comparando com o metodo Arrays.binarySearch do java: ");
+        Thread.sleep(3000);
+        IO.println("medindo os tempos do vetor mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaMil, copiaMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaMil, copiaMil[(copiaMil.length-1)/2]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaMil, copiaMil[copiaMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+
+        IO.println("medindo os tempos do vetor dez mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaDezMil, copiaDezMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaDezMil, copiaDezMil[(copiaDezMil.length-1)/2 ]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaDezMil, copiaDezMil[copiaDezMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+
+        IO.println("medindo os tempos do vetor de 100 mil: ");
+        Thread.sleep(2000);
+        IO.println("primeiro elemento: ");
+        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
+        inicio = System.nanoTime();
+        Arrays.binarySearch( copiaCemMil, copiaCemMil[0]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o valor do meio: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaCemMil, copiaCemMil[(copiaCemMil.length-1)/2]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+        IO.println("Buscando o ultimo elemento: ");
+        Thread.sleep(2000);
+        inicio = System.nanoTime();
+        Arrays.binarySearch(copiaCemMil, copiaCemMil[copiaCemMil.length-1]);
+        fim = System.nanoTime();
+        IO.println(estatisticaTempo());
+        Thread.sleep(2000);
+    }
+
+    public void testesVetorMilLinear() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de mil: (melhor caso: O(1))" );
         Thread.sleep(2000);
         buscaLinear(vetorMil, vetorMil.get(0));
@@ -40,48 +130,42 @@ public class Main {
         IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("Buscando elemento inexistente no vetor de mil: (pior caso: O(n))");
-        buscaLinear(vetorMil, -2);
-        Thread.sleep(4000);
+    }
 
+
+    public void testesVetorDezMilLinear() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de dez mil: (melhor caso: O(1))" );
         Thread.sleep(2000);
         buscaLinear(vetorDezMil, vetorDezMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de dez mil: (caso intermediário: O(n/2))");
-        buscaLinear(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
+       // buscaLinear(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de dez mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorDezMil, vetorDezMil.get(vetorDezMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("Buscando elemento inexistente no vetor de dez mil: (pior caso: O(n))");
-        Thread.sleep(3000);
-        buscaLinear(vetorDezMil, -2);
-        Thread.sleep(4000);
+    }
 
+    public void testesVetorCemMilLinear() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de cem mil: (melhor caso: O(1))" );
         Thread.sleep(2000);
         buscaLinear(vetorCemMil, vetorCemMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de cem mil: (caso intermediário: O(n/2))");
-        buscaLinear(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
+        //buscaLinear(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("Buscando elemento inexistente no vetor de cem mil: (pior caso: O(n))");
-        Thread.sleep(3000);
-        buscaLinear(vetorCemMil, -2);
-        Thread.sleep(4000);
+    }
 
-        IO.println("   Usando busca binaria em todos os vetores:   ");
-        Thread.sleep(4000);
+    private void testesVetorMilBinario() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de mil: (pior caso: O(log n))" );
         Thread.sleep(2000);
         buscaBinaria(vetorMil, vetorMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de mil: (melhor caso: O(1) )");
-        buscaBinaria(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
+        //buscaBinaria(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso: O(log n)): ");
         buscaBinaria(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
@@ -89,7 +173,9 @@ public class Main {
         IO.println("Buscando elemento inexistente no vetor de mil: (pior caso: O(log n))");
         buscaBinaria(vetorMil, -2);
         Thread.sleep(4000);
+    }
 
+    private void testesVetorDezMilBinario() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de dez mil: (pior caso: O(log n))" );
         Thread.sleep(2000);
         buscaBinaria(vetorDezMil, vetorDezMil.get(0));
@@ -100,11 +186,9 @@ public class Main {
         IO.println("Buscando o ultimo elemento do vetor de dez mil (segundo pior caso: O(log n)): ");
         buscaBinaria(vetorDezMil, vetorDezMil.get(vetorDezMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("Buscando elemento inexistente no vetor de dez mil: (pior caso: O(log n))");
-        Thread.sleep(3000);
-        buscaBinaria(vetorDezMil, -2);
-        Thread.sleep(4000);
+    }
 
+    private void testesVetorCemMilBinario() throws InterruptedException {
         IO.println(" Buscando o primeiro elemento no Vetor de cem mil: (pior caso: O(log n))" );
         Thread.sleep(2000);
         buscaBinaria(vetorCemMil, vetorCemMil.get(0));
@@ -115,24 +199,18 @@ public class Main {
         IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
         buscaBinaria(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
         Thread.sleep(3000);
-        IO.println("Buscando elemento inexistente no vetor de cem mil: (pior caso: O(log n))");
-        Thread.sleep(3000);
-        buscaBinaria(vetorCemMil, -2);
-        Thread.sleep(4000);
-
-        IO.println(" Comparando com o metodo Arrays.binarySearch do java: ");
-        Thread.sleep(3000);
-        IO.println("medindo os tempos do vetor mil: ");
-        Thread.sleep(2000);
-        IO.println("primeiro elemento: ");
-        //Arrays.binarySearch( vetorMil, vetorMil.get(0));
-        Arrays.binarySearch( Arrays.copyOf(vetorMil, 999) , vetorMil.get(0));
     }
 
     private void popular(Vetor<Integer> vetor, int quantidade, int range) {
         while (vetor.obterTamanho() < quantidade) {
             vetor.inserirOrdenado(random.nextInt(range));
         }
+    }
+
+    private String estatisticaTempo(){
+        return String.format(
+                "tempo em ms: %.2f", calcTempo()
+        );
     }
 
     // iremos calcular o tempo em ms de forma um pouco diferente
@@ -168,7 +246,7 @@ public class Main {
 
         for (int i = 0; i < vetor.obterTamanho(); i++) {
             comparacoes++;
-            if (vetor.get(i) == alvo) {
+            if (vetor.get(i).equals(alvo)) {
                 fim = System.nanoTime();
                 listarEstatisticas(comparacoes, i);
                 return i;
@@ -185,7 +263,7 @@ public class Main {
 
         for (int i = 0; i < vetor.obterTamanho(); i++) {
             comparacoes++;
-            if (vetor.get(i) == alvo) {
+            if (vetor.get(i).equals(alvo)) {
                 fim = System.nanoTime();
                 listarEstatisticas(comparacoes, i);
                 return i;
@@ -211,7 +289,7 @@ public class Main {
             comparacoes++;
             int meio = (inicioBusca + fimBusca) / 2;
 
-            if (vetor.get(meio) == alvo) {
+            if (vetor.get(meio).equals(alvo)) {
                 fim = System.nanoTime();
                 listarEstatisticas(comparacoes, meio);
                 return meio;

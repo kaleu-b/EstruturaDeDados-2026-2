@@ -133,6 +133,13 @@ public class Vetor<T> {
         tamanhoPreenchido++;
     }
 
+    public T[] toArray(){// elementos = (T[]) new Object[quantidade];
+        T[] elementosNovos;
+        elementosNovos = (T[]) new Object[tamanhoPreenchido];
+        if (tamanhoPreenchido >= 0) System.arraycopy(elementos, 0, elementosNovos, 0, (tamanhoPreenchido));
+        return elementosNovos;
+    }
+
     public int obterTamanho(){
         return tamanhoPreenchido;
     }
