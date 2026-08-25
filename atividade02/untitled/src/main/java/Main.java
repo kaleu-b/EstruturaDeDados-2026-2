@@ -139,7 +139,7 @@ public class Main {
         buscaLinear(vetorDezMil, vetorDezMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de dez mil: (caso intermediário: O(n/2))");
-       // buscaLinear(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
+        buscaLinear(vetorDezMil, vetorDezMil.get( (vetorDezMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de dez mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorDezMil, vetorDezMil.get(vetorDezMil.obterTamanho()-1));
@@ -152,7 +152,7 @@ public class Main {
         buscaLinear(vetorCemMil, vetorCemMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de cem mil: (caso intermediário: O(n/2))");
-        //buscaLinear(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
+        buscaLinear(vetorCemMil, vetorCemMil.get( (vetorCemMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de cem mil (segundo pior caso: O(n)): ");
         buscaLinear(vetorCemMil, vetorCemMil.get(vetorCemMil.obterTamanho()-1));
@@ -165,7 +165,7 @@ public class Main {
         buscaBinaria(vetorMil, vetorMil.get(0));
         Thread.sleep(3000);
         IO.println("Buscando o elemento do meio de Vetor de mil: (melhor caso: O(1) )");
-        //buscaBinaria(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
+        buscaBinaria(vetorMil, vetorMil.get( (vetorMil.obterTamanho()-1)/2 ));
         Thread.sleep(3000);
         IO.println("Buscando o ultimo elemento do vetor de mil (segundo pior caso: O(log n)): ");
         buscaBinaria(vetorMil, vetorMil.get(vetorMil.obterTamanho()-1));
