@@ -1,6 +1,6 @@
 package contatos;
 
-public class Contato {
+public class Contato implements Comparable {
     private String nome;
     private String telefones;
     private String email; // opcional a inclusão dessa informação pelo usuário
@@ -9,6 +9,11 @@ public class Contato {
         this.nome = nome;
         this.telefones = telefones;
         this.email = "E-mail não informado!";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 
     public Contato(String nome, String telefones, String email) {

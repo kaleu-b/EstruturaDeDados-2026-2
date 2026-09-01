@@ -1,3 +1,5 @@
+package contatos;
+
 import contatos.Contato;
 
 public class AgendaTelefonica {
@@ -8,7 +10,7 @@ public class AgendaTelefonica {
     }
 
     public void adicionar(Contato contato) {
-        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+        for (int i = 0; i < contatos.obterTamanho(); i++) {
             /*if (contatos.[i].getNome().equals(contato.getNome())) {
                 System.out.println("Nome repetido!");
                 return;
@@ -46,7 +48,7 @@ public class AgendaTelefonica {
 
     public void remover(int indice) {
 
-        if (indice < 0 || indice >= contatos.obterPreenchido()){
+        if (indice < 0 || indice >= contatos.obterTamanho()){
             System.out.println("Indice invalido");
             return;
         }
@@ -69,7 +71,7 @@ public class AgendaTelefonica {
 
     public void remover(Contato contato) {
 
-        for (int i = 0; i<contatos.obterPreenchido(); i++){
+        for (int i = 0; i<contatos.obterTamanho(); i++){
             if (contatos.get(i).getNome().equals(contato.getNome()) ||
                     contatos.get(i).getTelefones().equals(contato.getTelefones())){
                 contatos.remover(i);
@@ -94,7 +96,7 @@ public class AgendaTelefonica {
             }
         }*/
 
-        for (int i=0; i<contatos.obterPreenchido(); i++){
+        for (int i=0; i<contatos.obterTamanho(); i++){
             if (contatos.get(i).getNome().equals(contato.getNome()) || contatos.get(i).getTelefones().equals(contato.getTelefones())){
                 //System.out.println("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
                 IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
@@ -106,7 +108,7 @@ public class AgendaTelefonica {
         Contato[] contatosIguais;
         int tamanhoInicial = 0;
         // obtendo quantidade de elementos com mesmo nome
-        for(int i = 0; i< contatos.obterPreenchido(); i++){
+        for(int i = 0; i< contatos.obterTamanho(); i++){
             if(contatos.get(i).getNome().startsWith(nome)){
                 tamanhoInicial++;
             }
@@ -114,7 +116,7 @@ public class AgendaTelefonica {
 
         contatosIguais = new Contato[tamanhoInicial];
         int preenchido = 0;
-        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+        for (int i = 0; i < contatos.obterTamanho(); i++) {
             if(contatos.get(i).getNome().startsWith(nome)) {
                 contatosIguais[preenchido] = contatos.get(i);
                 preenchido++;
@@ -130,7 +132,7 @@ public class AgendaTelefonica {
     }
 
     public void atualizar(Contato contatoantigo, Contato contatonovo) {
-        for (int i = 0; i < contatos.obterPreenchido(); i++) {
+        for (int i = 0; i < contatos.obterTamanho(); i++) {
             if (contatos.get(i).getNome().equals(contatoantigo.getNome()) || contatos.get(i).getTelefones().equals(contatoantigo.getTelefones())) {
                 contatos.substituir(contatonovo, i);
                 return;
@@ -141,7 +143,7 @@ public class AgendaTelefonica {
     public void listar() {
         System.out.print("[ ");
 
-        for (int i = 0; i<contatos.obterPreenchido(); i++){
+        for (int i = 0; i<contatos.obterTamanho(); i++){
             IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
         }
         /*for (int i = 0; i < tamanho; i++) {

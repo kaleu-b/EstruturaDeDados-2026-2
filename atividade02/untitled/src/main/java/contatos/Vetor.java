@@ -146,4 +146,7 @@ public class Vetor<T extends Comparable> {
         return tamanhoPreenchido;
     }
 
+    public void substituir(T o, int i) {
+        elementos[i] = o;
+    }
 }
