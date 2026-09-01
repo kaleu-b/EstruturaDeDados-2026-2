@@ -1,3 +1,5 @@
+package contatos;
+
 public class Telefone {
     static void main() {
         AgendaTelefonica agenda = new AgendaTelefonica(7);

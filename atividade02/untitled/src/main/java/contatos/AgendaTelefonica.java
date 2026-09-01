@@ -1,3 +1,5 @@
+package contatos;
+
 public class AgendaTelefonica {
     private Contato[] contatos;
     private int tamanho;
