@@ -16,6 +16,10 @@ public class Contato implements Comparable<Contato> {
         return this.nome.compareToIgnoreCase(o.getNome());
     }
 
+    public int compareTo(String busca){
+        return this.nome.compareToIgnoreCase(busca);
+    }
+
     public Contato(String nome, String telefones, String email) {
         this.nome = nome;
         this.telefones = telefones;

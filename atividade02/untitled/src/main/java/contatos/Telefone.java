@@ -50,5 +50,12 @@ public class Telefone {
             IO.println(contatoIguaisTeste[i]);
         }
 
+        Contato c = agenda.buscaLinear("ane");
+        Contato d = AgendaTelefonica.buscaBinaria("ane", agenda);
+
+        if (d != null){
+            IO.println("achado");
+            IO.println(d.getNome());
+        }
     }
 }
