@@ -1,6 +1,6 @@
 package contatos;
 
-public class Contato implements Comparable {
+public class Contato implements Comparable<Contato> {
     private String nome;
     private String telefones;
     private String email; // opcional a inclusão dessa informação pelo usuário
@@ -12,8 +12,8 @@ public class Contato implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Contato o) {
+        return this.nome.compareToIgnoreCase(o.getNome());
     }
 
     public Contato(String nome, String telefones, String email) {

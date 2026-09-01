@@ -1,13 +1,13 @@
 package contatos;
 
-public class Vetor<T extends Comparable> {
+public class Vetor<T extends Comparable<T>> {
 
     private T[] elementos;
     private int tamanhoPreenchido;
 
     @SuppressWarnings("unchecked")
     public Vetor(int quantidade){
-        elementos = (T[]) new Object[quantidade];
+        elementos = (T[]) new Comparable[quantidade];
         tamanhoPreenchido = 0;
     }
 
@@ -25,7 +25,7 @@ public class Vetor<T extends Comparable> {
 
     @SuppressWarnings("unchecked")
     private void expandir(){
-        T[] novo = (T[]) new Object[elementos.length*2];
+        T[] novo = (T[]) new Comparable[elementos.length*2];
         for (int i = 0; i < elementos.length; i++) {
             novo[i] = elementos[i];
         }
@@ -44,7 +44,7 @@ public class Vetor<T extends Comparable> {
     private void reduzir(){
         if (tamanhoPreenchido <= elementos.length/4) {
             // quanto diminuir??????????????? **METADE**!!!!!!!!!!!!!!!
-            T[] novo = (T[]) new Object[elementos.length / 2];
+            T[] novo = (T[]) new Comparable[elementos.length / 2];
             for (int i = 0; i < tamanhoPreenchido; i++) {
                 novo[i] = elementos[i];
             }
@@ -75,7 +75,7 @@ public class Vetor<T extends Comparable> {
     public void inserirOrdenadov2(T valor) {
 
         if (localizar(valor) != -1) {
-           // System.out.println("Valor " + valor + " já existe na lista.");
+            // System.out.println("Valor " + valor + " já existe na lista.");
             return;
         }
         if (tamanhoPreenchido == 0) {
@@ -83,7 +83,7 @@ public class Vetor<T extends Comparable> {
             return;
         }
         for (int i = 0; i < tamanhoPreenchido; i++) {
-            if ((Integer)valor < (Integer) elementos[i]) {
+            if (valor.compareTo(elementos[i]) < 0) {
                 inserir(valor,i);
                 break;
             }
@@ -107,7 +107,7 @@ public class Vetor<T extends Comparable> {
 
     public int localizar(T elemento) {
         for (int i = 0; i < tamanhoPreenchido; i++) {
-            if (elementos[i] != null && elementos[i] == elemento) {
+            if (elementos[i] != null && elementos[i].compareTo(elemento) == 0) {
                 return i;
             }
         }
@@ -124,8 +124,7 @@ public class Vetor<T extends Comparable> {
         }
         int i;
         for (i = tamanhoPreenchido - 1; i >= 0; i--) {
-            Integer atual = (Integer) elementos[i];
-            if (atual > (Integer) valor) {
+            if (elementos[i].compareTo(valor) > 0) {
                 elementos[i + 1] = elementos[i]; // desloca para a direita
             } else {
                 break;
@@ -137,7 +136,7 @@ public class Vetor<T extends Comparable> {
 
     public T[] toArray(){// elementos = (T[]) new Object[quantidade];
         T[] elementosNovos;
-        elementosNovos = (T[]) new Object[tamanhoPreenchido];
+        elementosNovos = (T[]) new Comparable[tamanhoPreenchido];
         if (tamanhoPreenchido >= 0) System.arraycopy(elementos, 0, elementosNovos, 0, (tamanhoPreenchido));
         return elementosNovos;
     }

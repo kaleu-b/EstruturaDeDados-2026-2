@@ -20,7 +20,7 @@ public class AgendaTelefonica {
                 return;
             }*/
 
-            if(contatos.get(i).getNome().equals(contato)){
+            if(contatos.get(i).getNome().equalsIgnoreCase(contato.getNome())){
                 System.out.println("Nome repetido!");
                 return;
             }
@@ -29,8 +29,6 @@ public class AgendaTelefonica {
                 System.out.println("Telefone repetido!");
                 return;
             }
-
-            contatos.inserir(contato);
         }
 
        /* if (tamanho < contatos.length) {
@@ -43,7 +41,7 @@ public class AgendaTelefonica {
         */
         // expandir();
 
-        contatos.inserir(contato);
+        contatos.inserirOrdenado(contato);
     }
 
     public void remover(int indice) {
@@ -72,9 +70,10 @@ public class AgendaTelefonica {
     public void remover(Contato contato) {
 
         for (int i = 0; i<contatos.obterTamanho(); i++){
-            if (contatos.get(i).getNome().equals(contato.getNome()) ||
+            if (contatos.get(i).getNome().equalsIgnoreCase(contato.getNome()) ||
                     contatos.get(i).getTelefones().equals(contato.getTelefones())){
                 contatos.remover(i);
+                break;
             }
         }
         /*for (int i = 0; i < tamanho; i++) {
@@ -97,9 +96,9 @@ public class AgendaTelefonica {
         }*/
 
         for (int i=0; i<contatos.obterTamanho(); i++){
-            if (contatos.get(i).getNome().equals(contato.getNome()) || contatos.get(i).getTelefones().equals(contato.getTelefones())){
+            if (contatos.get(i).getNome().equalsIgnoreCase(contato.getNome()) || contatos.get(i).getTelefones().equals(contato.getTelefones())){
                 //System.out.println("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
-                IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
+                System.out.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
             }
         }
     }
@@ -109,7 +108,7 @@ public class AgendaTelefonica {
         int tamanhoInicial = 0;
         // obtendo quantidade de elementos com mesmo nome
         for(int i = 0; i< contatos.obterTamanho(); i++){
-            if(contatos.get(i).getNome().startsWith(nome)){
+            if(contatos.get(i).getNome().toLowerCase().startsWith(nome.toLowerCase())){
                 tamanhoInicial++;
             }
         }
@@ -117,7 +116,7 @@ public class AgendaTelefonica {
         contatosIguais = new Contato[tamanhoInicial];
         int preenchido = 0;
         for (int i = 0; i < contatos.obterTamanho(); i++) {
-            if(contatos.get(i).getNome().startsWith(nome)) {
+            if(contatos.get(i).getNome().toLowerCase().startsWith(nome.toLowerCase())) {
                 contatosIguais[preenchido] = contatos.get(i);
                 preenchido++;
             }
@@ -133,8 +132,9 @@ public class AgendaTelefonica {
 
     public void atualizar(Contato contatoantigo, Contato contatonovo) {
         for (int i = 0; i < contatos.obterTamanho(); i++) {
-            if (contatos.get(i).getNome().equals(contatoantigo.getNome()) || contatos.get(i).getTelefones().equals(contatoantigo.getTelefones())) {
-                contatos.substituir(contatonovo, i);
+            if (contatos.get(i).getNome().equalsIgnoreCase(contatoantigo.getNome()) || contatos.get(i).getTelefones().equals(contatoantigo.getTelefones())) {
+                contatos.remover(i);
+                contatos.inserirOrdenado(contatonovo);
                 return;
             }
         }
@@ -144,7 +144,7 @@ public class AgendaTelefonica {
         System.out.print("[ ");
 
         for (int i = 0; i<contatos.obterTamanho(); i++){
-            IO.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
+            System.out.println("Nome: " + contatos.get(i).getNome() + " Telefone:" + contatos.get(i).getTelefones());
         }
         /*for (int i = 0; i < tamanho; i++) {
             System.out.print("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
@@ -162,23 +162,3 @@ public class AgendaTelefonica {
         }
     }
 }
-
-
-     /* private void expandir(){
-        String[] novo = new String[contatos.length*2];
-        for (int i = 0; i < contatos.length; i++) {
-            novo[i] = contatos[i];
-        }
-        this.contatos = novo;
-    }
-
-    private void reduzir(){
-        if (tamanhoPreenchido <= elementos.length/4) {
-            // quanto diminuir??????????????? **METADE**!!!!!!!!!!!!!!!
-            String[] novo = new String[elementos.length / 2];
-            for (int i = 0; i < tamanho; i++) {
-                novo[i] = contatos[i];
-            }
-            this.contatos = novo;
-        }
-    }*/
