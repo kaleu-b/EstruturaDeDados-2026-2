@@ -49,4 +49,9 @@ public class Contato implements Comparable<Contato> {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %s Telefone: %s Email: %s", nome, telefones, email);
+    }
 }

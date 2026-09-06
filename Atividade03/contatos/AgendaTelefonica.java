@@ -2,32 +2,19 @@ package contatos;
 
 public class AgendaTelefonica {
 
-    private Vetor[] alfabeto;
+    private final Vetor[] alfabeto;
 
     public AgendaTelefonica(int quantidade) {
-        alfabeto = new char[26];
+        alfabeto = new Vetor[26];
         for(int i=0; i<alfabeto.length; i++){
+            // inicia cada vetor de letra com 1 unico elemento
+            // a medida que contatos são inseridos, o vetor deve aumentar.
             alfabeto[i] = new Vetor<Contato>(1);
         }
     }
 
     public void adicionar(Contato contato) {
-       /*  for (int i = 0; i < this.obterTamanho(); i++) {
-
-            if(this.get(i).getNome().equalsIgnoreCase(contato.getNome())){
-                System.out.println("Nome repetido!");
-                return;
-            }
-
-            if(this.get(i).getTelefones().equals(contato.getTelefones())){
-                System.out.println("Telefone repetido!");
-                return;
-            }
-        }
-
-        this.inserirOrdenado(contato);*/
-
-        indiceAlfabeto = retornaIndice(contato);
+        int indiceAlfabeto = retornaIndice(contato);
 
         adicionarContato(contato, indiceAlfabeto);
     }
@@ -37,92 +24,62 @@ public class AgendaTelefonica {
     }
 
     public int retornaIndice(Contato contato){
-        char letra = Character.toUpperCase(contato.getNome().charAt(0));
+        return retornaIndice(contato.getNome());
+    }
+
+    public int retornaIndice(String texto){
+        char letra = Character.toUpperCase(texto.charAt(0));
         return letra - 'A';
     }
 
+    public void remover(String busca) {
+         int indiceAlfabeto = retornaIndice(busca);
+         int indiceElemento = buscaBinariaInt(busca, alfabeto[indiceAlfabeto]);
 
-    public void remover(int indice) {
-
-        if (indice < 0 || indice >= this.obterTamanho()){
-            System.out.println("Indice invalido");
-            return;
-        }
-
-        super.remover(indice);
+         removerContato(indiceAlfabeto, indiceElemento);
     }
 
-
-
-    public void remover(Contato contato) {
-
-        for (int i = 0; i<this.obterTamanho(); i++){
-            if  (this.get(i).getNome().equalsIgnoreCase(contato.getNome()) ||
-                    this.get(i).getTelefones().equals(contato.getTelefones())){
-                    this.remover(i);
-                break;
-            }
-        }
-    
+    private void removerContato(int indiceAlfabeto, int indiceElemento){
+        IO.println(String.format("Removendo contato %s ", (Contato) alfabeto[indiceAlfabeto].get(indiceElemento)));
+        alfabeto[indiceAlfabeto].remover(indiceElemento);
     }
 
-    public void buscar(Contato contato) {
+    public void atualizarEmail(String busca, String email) {
+        int indiceAlfabeto = retornaIndice(busca);
+        int indiceElemento = buscaBinariaInt(busca, alfabeto[indiceAlfabeto]);
 
-        for (int i=0; i<this.obterTamanho(); i++){
-            if (this.get(i).getNome().equalsIgnoreCase(contato.getNome()) || this.get(i).getTelefones().equals(contato.getTelefones())){
-                //System.out.println("Nome: " + contatos[i].getNome() + " Telefone: " + contatos[i].getTelefones());
-                System.out.println("Nome: " + this.get(i).getNome() + " Telefone:" + this.get(i).getTelefones());
-            }
-        }
-    }
-
-    public Contato[] buscarprefixo(String nome) {
-        Contato[] contatosIguais;
-        int tamanhoInicial = 0;
-        for(int i = 0; i< this.obterTamanho(); i++){
-            if(this.get(i).getNome().toLowerCase().startsWith(nome.toLowerCase())){
-                tamanhoInicial++;
-            }
-        }
-
-        contatosIguais = new Contato[tamanhoInicial];
-        int preenchido = 0;
-        for (int i = 0; i < this.obterTamanho(); i++) {
-            if(this.get(i).getNome().toLowerCase().startsWith(nome.toLowerCase())) {
-                contatosIguais[preenchido] = this.get(i);
-                preenchido++;
-            }
-        }
-        return contatosIguais;
-    }
-
-    public void atualizar(Contato contatoantigo, Contato contatonovo) {
-        for (int i = 0; i < this.obterTamanho(); i++) {
-            if (this.get(i).getNome().equalsIgnoreCase(contatoantigo.getNome()) || this.get(i).getTelefones().equals(contatoantigo.getTelefones())) {
-                this.remover(i);
-                this.inserirOrdenado(contatonovo);
-                return;
-            }
-        }
+        Contato contatoAtualizado = (Contato) alfabeto[indiceAlfabeto].get(indiceElemento);
+        ((Contato) alfabeto[indiceAlfabeto].get(indiceElemento)).setEmail(email);
     }
 
     public void listar() {
         System.out.print("[ ");
 
-        for (int i = 0; i<this.obterTamanho(); i++){
-            System.out.println("Nome: " + this.get(i).getNome() + " Telefone:" + this.get(i).getTelefones());
+        for (Vetor<Contato> listaContato : alfabeto) {
+            for (int j = 0; j < listaContato.obterTamanho(); j++) {
+                IO.println(
+                        String.format("Nome: %s , Telefone: %s",
+                                listaContato.get(j).getNome(),
+                                listaContato.get(j).getTelefones())
+                );
+            }
         }
+
         System.out.print(" ]");
     }
-    // busca linear que retorna um obj. contato
-    public Contato buscaLinear(String busca){
-        for (int i = 0; i < this.obterTamanho(); i++) {
-            if (this.get(i).getNome().equalsIgnoreCase(busca))return this.get(i);
-        }
-        return null;
+
+    public Contato buscar(String busca){
+        // descobre em que letra do alfabeto o possível contato deve estar
+        int indiceAlfabeto = retornaIndice(busca);
+        // busca na letra do alfabeto o termo da busca
+        return buscaBinaria(busca, alfabeto[indiceAlfabeto]);
     }
-    // busca binaria que retorna um obj. contato
-    public static Contato buscaBinaria(String busca, AgendaTelefonica contatos){
+
+
+    // busca binaria que retorna um obj. contato ou null se o obj. não for encontrado
+    // a string de busca precisa ser uma correspondecia exata ao nome
+    // ex: busca "ana paula" === nome "ana paula"
+    protected static Contato buscaBinaria(String busca, Vetor<Contato> contatos){
 
         int inicioVetor = 0;
         int fimVetor = contatos.obterTamanho() - 1;
@@ -141,6 +98,27 @@ public class AgendaTelefonica {
             else fimVetor = meio-1;
         }
         return null;
+    }
+
+
+    protected static int buscaBinariaInt(String busca, Vetor<Contato> contatos){
+        int inicioVetor = 0;
+        int fimVetor = contatos.obterTamanho() - 1;
+
+        while(inicioVetor <= fimVetor){
+            int meio = (inicioVetor + fimVetor) / 2;
+            // se for igual a string de busca
+            if (contatos.get(meio).getNome().equalsIgnoreCase(busca)){
+                return meio;
+            }
+            // se for maior
+            if(contatos.get(meio).compareTo(busca) < 0 ){
+                inicioVetor = meio+1;
+            }
+
+            else fimVetor = meio-1;
+        }
+        return -1;
     }
 
 
