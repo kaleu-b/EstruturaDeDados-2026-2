@@ -4,7 +4,7 @@ public class AgendaTelefonica {
 
     private final Vetor[] alfabeto;
 
-    public AgendaTelefonica(int quantidade) {
+    public AgendaTelefonica() {
         alfabeto = new Vetor[26];
         for(int i=0; i<alfabeto.length; i++){
             // inicia cada vetor de letra com 1 unico elemento
@@ -53,19 +53,23 @@ public class AgendaTelefonica {
     }
 
     public void listar() {
-        System.out.print("[ ");
-
-        for (Vetor<Contato> listaContato : alfabeto) {
-            for (int j = 0; j < listaContato.obterTamanho(); j++) {
-                IO.println(
-                        String.format("Nome: %s , Telefone: %s",
-                                listaContato.get(j).getNome(),
-                                listaContato.get(j).getTelefones())
-                );
+        char letra = 'A';
+        for (Vetor<Contato> vetor : alfabeto) {
+            IO.println("===========================================");
+            IO.println(letra);
+            for (int j = 0; j < vetor.obterTamanho(); j++) {
+                if (vetor.get(j) != null) {
+                    IO.println(
+                            String.format("Nome: %s , Telefone: %s",
+                                     vetor.get(j).getNome(),
+                                     vetor.get(j).getTelefones())
+                    );
+                }
             }
+            IO.println("===========================================");
+            letra++;
         }
 
-        System.out.print(" ]");
     }
 
     public Contato buscar(String busca){
@@ -122,7 +126,11 @@ public class AgendaTelefonica {
     }
 
 
-    public void manipulacao(Contato[] contato) {
-        for (Contato value : contato) adicionar(value);
+
+
+    public void manipulacao(Contato[] lista) {
+        for (Contato contato : lista){
+            adicionar(contato);
+        }
     }
 }

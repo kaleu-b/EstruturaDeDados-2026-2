@@ -5,6 +5,24 @@ import java.util.Scanner;
 public class Telefone {
 
     void main(){
+        AgendaTelefonica agendaTelefonica = new AgendaTelefonica();
+        //  descomente essas linhas abaixo para adicionar contatos de teste sem precisar
+        //  interagir com o CLI
+
+/*        Contato[] lista = {
+          new Contato("Ana Paula Zulane", "9809797"),
+          new Contato("Ana Paula Carolina", "908098"),
+          new Contato("Ana", "09789807"),
+          new Contato("Ana Paula Zzlane", "98080"),
+          new Contato("Ana Paula Carolina da Silva", "8098"),
+          new Contato("Ana Paula Carolina da Santos", "08908")
+        };
+
+        agendaTelefonica.manipulacao(lista);
+        agendaTelefonica.listar();
+        agendaTelefonica.remover("Ana");
+        agendaTelefonica.listar();
+*/
         Scanner leitor = new Scanner(System.in);
         boolean continuarRodando = true;
         while (continuarRodando) {
@@ -20,35 +38,40 @@ public class Telefone {
             String opcao = leitor.nextLine();
             IO.println();
 
-            if (opcao.equals("1")) {
-                IO.print("Digite o nome do contato: ");
-                String contato = leitor.nextLine();
-                IO.print("Digite telefone: ");
-                String telefone = leitor.nextLine();
-                // .adicionar();
-                IO.println();
-            } else if (opcao.equals("2")){
-                IO.print("Digite o nome do contato a remover: ");
-                String remover = leitor.nextLine();
-                // .remover();
-                IO.println();
-            } else if (opcao.equals("3")){
-                IO.print("Digite o nome do contato a buscar: ");
-                String buscar = leitor.nextLine();
-                // .buscar();
-                IO.println();
-            } else if (opcao.equals("4")){ 
-                IO.print("Digite o nome do contato a atualizar: ");
-                String contato = leitor.nextLine();
-                IO.print("Digite o novo telefone: ");
-                String telefone = leitor.nextLine();
-                // atualizar();
-                IO.println();
-            } else if (opcao.equals("5")){ 
-            continuarRodando = false;
-            }  else {
-                IO.println("Opção inexistente, tente novamente!");
-                IO.println();
+            switch (opcao) {
+                case "1" -> {
+                    IO.print("Digite o nome do contato: ");
+                    String contato = leitor.nextLine();
+                    IO.print("Digite telefone: ");
+                    String telefone = leitor.nextLine();
+                    // .adicionar();
+                    IO.println();
+                }
+                case "2" -> {
+                    IO.print("Digite o nome do contato a remover: ");
+                    String remover = leitor.nextLine();
+                    // .remover();
+                    IO.println();
+                }
+                case "3" -> {
+                    IO.print("Digite o nome do contato a buscar: ");
+                    String buscar = leitor.nextLine();
+                    // .buscar();
+                    IO.println();
+                }
+                case "4" -> {
+                    IO.print("Digite o nome do contato a atualizar: ");
+                    String contato = leitor.nextLine();
+                    IO.print("Digite o novo telefone: ");
+                    String telefone = leitor.nextLine();
+                    // atualizar();
+                    IO.println();
+                }
+                case "5" -> continuarRodando = false;
+                default -> {
+                    IO.println("Opção inexistente, tente novamente!");
+                    IO.println();
+                }
             }
         } 
     }

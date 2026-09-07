@@ -74,20 +74,35 @@ public class Vetor<T extends Comparable<T>> {
 
     public void inserirOrdenadov2(T valor) {
 
-        if (localizar(valor) != -1) {
-            // System.out.println("Valor " + valor + " já existe na lista.");
-            return;
-        }
-        if (tamanhoPreenchido == 0) {
-            inserir(valor, tamanhoPreenchido);
-            return;
-        }
-        for (int i = 0; i < tamanhoPreenchido; i++) {
-            if (valor.compareTo(elementos[i]) < 0) {
-                inserir(valor,i);
-                break;
+    int valorInsercao = buscarIndiceOrdenado(valor);
+    if (valorInsercao < 0){
+        return;
+    }
+
+    inserir(valor, valorInsercao);
+
+    }
+
+    // usando a lógica da busca binária para determinar em que posição um elemento deve ir
+    // ex com contato: 'Ana' e 'ana' devem ser posicionados na mesma posição
+    private int buscarIndiceOrdenado(T valor){
+        int inicio = 0;
+        int fim = tamanhoPreenchido - 1;
+
+        while (inicio<=fim){
+            int meio = (inicio+fim) / 2;
+
+            if (valor.compareTo(elementos[meio]) == 0){
+                return meio; // elemento ja existe
             }
+
+            if (valor.compareTo(elementos[meio]) > 0){
+                inicio = meio+1;
+            }
+
+            else fim = meio - 1;
         }
+        return inicio;
     }
 
     public void inserir(T elemento, int index){
@@ -103,6 +118,7 @@ public class Vetor<T extends Comparable<T>> {
 
         elementos[index] = elemento;
         tamanhoPreenchido++;
+        IO.println("Adicionando elemento em " + index);
     }
 
     public int localizar(T elemento) {
