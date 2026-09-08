@@ -1,5 +1,4 @@
-# 1- Por que essa abordagem usando um array de instâncias da classe Vetor torna a busca de um contato
-# mais rápida em comparação com a versão anterior (uma única lista contendo todos os contatos)?
+# 1- Por que essa abordagem usando um array de instâncias da classe Vetor torna a busca de um contato mais rápida em comparação com a versão anterior (uma única lista contendo todos os contatos)?
 
 Ele torna a busca mais rápida ao dividir a agenda, que seria anteriormente um monólito, em 26 seções para cada letra.
 
@@ -11,14 +10,13 @@ Se considerarmos, por exemplo, uma lista com 10.000 contatos distrubuidos de for
 Aplicando a busca binária num vetor com 385 contatos, ou seja, log 385, temos 9 comparações feitas nos piores dos casos.
 Na lista monolítica, essa busca levaria 14 etapas.
 
-Representando em notação mais formal: log (n/26)* para a lista com seções e O(log n) para a monolítica
+Representando em notação mais formal: log (n/26)* para a lista com seções e O(log n) para a monolítica, n representando o total de elementos.
 
 Vale ressaltar que essa diminuição na quantidade de etapas pode parecer irrisória, mas em sistemas críticos pode ser significativo.
 
 Considerando que a distribuição dos elementos é uniforme*
 
-# 2 - O que acontece com o desempenho da busca se a maioria dos contatos cadastrados começar com a
-# mesma letra (ex: centenas de nomes iniciando com a letra "M")? O sistema continuará rápido? Justifique.
+# 2 - O que acontece com o desempenho da busca se a maioria dos contatos cadastrados começar com a mesma letra (ex: centenas de nomes iniciando com a letra "M")? O sistema continuará rápido? Justifique.
 
 Continua rápido, mas se tivermos muitos nomes de forma desproporcional na seção "M" da agenda, ele vai ter praticamento o mesmo custo da busca realizada no vetor monolítico.
 
