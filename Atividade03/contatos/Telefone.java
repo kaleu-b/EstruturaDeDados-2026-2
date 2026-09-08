@@ -3,26 +3,25 @@ package contatos;
 import java.util.Scanner;
 
 public class Telefone {
-
-    void main(){
+    void main() {
         AgendaTelefonica agendaTelefonica = new AgendaTelefonica();
         //  descomente essas linhas abaixo para adicionar contatos de teste sem precisar
         //  interagir com o CLI
 
-/*        Contato[] lista = {
-          new Contato("Ana Paula Zulane", "9809797"),
-          new Contato("Ana Paula Carolina", "908098"),
-          new Contato("Ana", "09789807"),
-          new Contato("Ana Paula Zzlane", "98080"),
-          new Contato("Ana Paula Carolina da Silva", "8098"),
-          new Contato("Ana Paula Carolina da Santos", "08908")
-        };
+    /*        Contato[] lista = {
+              new Contato("Ana Paula Zulane", "9809797"),
+              new Contato("Ana Paula Carolina", "908098"),
+              new Contato("Ana", "09789807"),
+              new Contato("Ana Paula Zzlane", "98080"),
+              new Contato("Ana Paula Carolina da Silva", "8098"),
+              new Contato("Ana Paula Carolina da Santos", "08908")
+            };
 
-        agendaTelefonica.manipulacao(lista);
-        agendaTelefonica.listar();
-        agendaTelefonica.remover("Ana");
-        agendaTelefonica.listar();
-*/
+            agendaTelefonica.manipulacao(lista);
+            agendaTelefonica.listar();
+            agendaTelefonica.remover("Ana");
+            agendaTelefonica.listar();
+    */
         Scanner leitor = new Scanner(System.in);
         boolean continuarRodando = true;
         while (continuarRodando) {
@@ -73,6 +72,6 @@ public class Telefone {
                     IO.println();
                 }
             }
-        } 
+        }
     }
 }

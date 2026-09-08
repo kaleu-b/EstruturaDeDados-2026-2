@@ -12,11 +12,17 @@ public class Contato implements Comparable<Contato> {
     }
 
     @Override
+    // recebe um contato e compara se é maior ou não com base no nome
+    // exemplo: Aza < Ana, retorno deve ser -1
+    // não diferencia maiúsculas de minúsculas
     public int compareTo(Contato o) {
         return this.nome.compareToIgnoreCase(o.getNome());
     }
-
-    public int compareTo(String busca){
+    // recebe uma string (tem que ser o nome para funcionar como deveria)
+    // e retorna um número dizendo se é maior ou não do que o nome desse
+    // obj contato.
+    // ex: Aza < Ana, o retorno deve ser -1
+    public int compareTo(String busca) {
         return this.nome.compareToIgnoreCase(busca);
     }
 
