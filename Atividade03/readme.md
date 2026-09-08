@@ -10,7 +10,7 @@ Se considerarmos, por exemplo, uma lista com 10.000 contatos distrubuidos de for
 Aplicando a busca binária num vetor com 385 contatos, ou seja, log 385, temos 9 comparações feitas nos piores dos casos.
 Na lista monolítica, essa busca levaria 14 etapas.
 
-Representando em notação mais formal: log (n/26)* para a lista com seções e O(log n) para a monolítica, n representando o total de elementos.
+Representando em notação mais formal: O(log(n/26))* para a lista com seções e O(log n) para a monolítica, n representando o total de elementos.
 
 Vale ressaltar que essa diminuição na quantidade de etapas pode parecer irrisória, mas em sistemas críticos pode ser significativo.
 

@@ -50,19 +50,20 @@ public class Telefone {
                     String contato = leitor.nextLine();
                     IO.print("Digite telefone: ");
                     String telefone = leitor.nextLine();
-                    // .adicionar();
+                    Contato novoContato = new Contato(contato, telefone);
+                    agendaTelefonica.adicionar(novoContato);
                     IO.println();
                 }
                 case "2" -> {
                     IO.print("Digite o nome do contato a remover: ");
                     String remover = leitor.nextLine();
-                    // .remover();
+                    agendaTelefonica.remover(remover);
                     IO.println();
                 }
                 case "3" -> {
                     IO.print("Digite o nome do contato a buscar: ");
                     String buscar = leitor.nextLine();
-                    // .buscar();
+                    IO.println(agendaTelefonica.buscar(buscar));
                     IO.println();
                 }
                 case "4" -> {
