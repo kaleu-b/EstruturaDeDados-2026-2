@@ -63,7 +63,7 @@ public class Telefone {
                     String contato = leitor.nextLine();
                     IO.print("Digite o novo telefone: ");
                     String telefone = leitor.nextLine();
-                    // atualizar();
+                    agendaTelefonica.atualizarTelefone(contato, telefone);
                     IO.println();
                 }
                 case "5" -> continuarRodando = false;

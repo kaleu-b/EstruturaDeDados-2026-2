@@ -57,9 +57,11 @@ public class Vetor<T extends Comparable<T>> {
             System.out.println("Posição inválida");
             return;
         }
-
-        for (int i = indice; i < tamanhoPreenchido; i++) {
-            elementos[i] = elementos[i + 1];
+        // se tiver mais de um elemento
+        if (tamanhoPreenchido > 1) {
+            for (int i = indice; i < tamanhoPreenchido; i++) {
+                elementos[i] = elementos[i + 1];
+            }
         }
         elementos[tamanhoPreenchido - 1] = null;
         tamanhoPreenchido--;

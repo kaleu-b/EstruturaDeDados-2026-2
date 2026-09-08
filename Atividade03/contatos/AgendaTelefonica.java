@@ -59,8 +59,9 @@ public class AgendaTelefonica {
                 "Removendo contato %s ", (Contato) alfabeto[indiceAlfabeto].get(indiceElemento)));
         alfabeto[indiceAlfabeto].remover(indiceElemento);
     }
-    // atualiza o email com base no nome do contato e o novo valor do email
-    public void atualizarEmail(String busca, String email) {
+    // atualiza o telefone com base no nome do contato e o novo valor do email
+    // complexidade: O(log n)
+    public void atualizarTelefone(String busca, String telefone) {
         int indiceAlfabeto = retornaIndice(busca);
         int indiceElemento = buscaBinariaInt(busca, alfabeto[indiceAlfabeto]);
         // se não for encontrado
@@ -69,10 +70,10 @@ public class AgendaTelefonica {
             return;
         }
         // se for encontrado atualiza o email
-        ((Contato) alfabeto[indiceAlfabeto].get(indiceElemento)).setEmail(email);
+        ((Contato) alfabeto[indiceAlfabeto].get(indiceElemento)).setTelefones(telefone);
     }
     // lista todos os contatos de todas as letras do alfabeto
-    // complexidade: O(n²) ou O(26*O(n))
+    // complexidade: O(n*m) ou O(26*O(n))
     public void listar() {
         char letra = 'A';
         for (Vetor<Contato> vetor : alfabeto) {
