@@ -8,7 +8,7 @@ public class Telefone {
         //  descomente essas linhas abaixo para adicionar contatos de teste sem precisar
         //  interagir com o CLI
 
-    /*        Contato[] lista = {
+/*            Contato[] lista = {
               new Contato("Ana Paula Zulane", "9809797"),
               new Contato("Ana Paula Carolina", "908098"),
               new Contato("Ana", "09789807"),
@@ -21,7 +21,14 @@ public class Telefone {
             agendaTelefonica.listar();
             agendaTelefonica.remover("Ana");
             agendaTelefonica.listar();
-    */
+
+            IO.println(agendaTelefonica.buscar("Ana Paula Carolina"));
+            agendaTelefonica.atualizarTelefone("Ana Paula Carolina", "9877697");
+            agendaTelefonica.listar();
+
+            agendaTelefonica.atualizarTelefone("Ana", "989797");
+            agendaTelefonica.remover("Ana");
+*/
         Scanner leitor = new Scanner(System.in);
         boolean continuarRodando = true;
         while (continuarRodando) {
