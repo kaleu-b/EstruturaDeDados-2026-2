@@ -26,4 +26,12 @@ public class Stack<T extends Comparable<T>> {
     public boolean isEmpty(){
         return elementos.obterTamanho() == 0;
     }
+
+    public T peek(){
+        if (isEmpty()){
+            throw new RuntimeException("Pilha Vazia");
+        }
+        return elementos.get(elementos.obterTamanho()-1);
+    }
+
 }
