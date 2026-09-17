@@ -34,4 +34,8 @@ public class Stack<T extends Comparable<T>> {
         return elementos.get(elementos.obterTamanho()-1);
     }
 
+    public int tamanho(){
+        return elementos.obterTamanho();
+    }
+
 }
