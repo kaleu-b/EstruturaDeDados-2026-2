@@ -1,30 +1,32 @@
 package atividade;
 
+import atividade.pilha.Stack;
+
 public class Labirinto {
 
 
-//        private char[][] mapa = {
-//                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'},
-//                {'P',' ',' ','*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ','*'},
-//                {'*','*',' ','*',' ','*',' ','*',' ','*','*','*','*',' ','*'},
-//                {'*',' ',' ',' ',' ','*',' ',' ',' ','*',' ',' ','*',' ','*'},
-//                {'*',' ','*','*','*','*','*','*',' ','*',' ','*','*',' ','*'},
-//                {'*',' ','*',' ',' ',' ',' ','*',' ','*',' ',' ',' ',' ','*'},
-//                {'*',' ','*',' ','*','*',' ','*',' ','*','*','*','*',' ','*'},
-//                {'*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ',' ','*','*','*'},
-//                {'*','*','*','*','*',' ','*','*','*','*','*',' ',' ',' ','T'},
-//                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'}
-//        };
-//
-//        // Posição inicial (linha, coluna)
-//        private int linhaInicial = 1;
-//        private int colunaInicial = 0;
-//
-//        // Posição final (linha, coluna)
-//        private int linhaFinal = 8;
-//        private int colunaFinal = 14;
+        private char[][] mapaMenor = {
+                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'},
+                {'P',' ',' ','*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ','*'},
+                {'*','*',' ','*',' ','*',' ','*',' ','*','*','*','*',' ','*'},
+                {'*',' ',' ',' ',' ','*',' ',' ',' ','*',' ',' ','*',' ','*'},
+                {'*',' ','*','*','*','*','*','*',' ','*',' ','*','*',' ','*'},
+                {'*',' ','*',' ',' ',' ',' ','*',' ','*',' ',' ',' ',' ','*'},
+                {'*',' ','*',' ','*','*',' ','*',' ','*','*','*','*',' ','*'},
+                {'*',' ',' ',' ','*',' ',' ',' ',' ',' ',' ',' ','*','*','*'},
+                {'*','*','*','*','*',' ','*','*','*','*','*',' ',' ',' ','T'},
+                {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'}
+        };
 
-    private char[][] mapa = {
+        // Posição inicial (linha, coluna)
+        private int linhaInicial = 1;
+        private int colunaInicial = 0;
+
+        // Posição final (linha, coluna)
+        private int linhaFinal = 8;
+        private int colunaFinal = 14;
+
+    private char[][] mapaMaior = {
             {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'},
             {'*','*','*','*','*','*','*',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','*','*','*','*','*','*','*','*',' ','*','*','*','*'},
             {'*','*','*','*','*','*','*',' ','*','*','*','*','*','*','*','*','*','*','*','*','*','*',' ','*','*','*','*','*','*','*','*','*','*','*','*','*',' ','*','*','*','*','*','*','*','*',' ','*','*','*','*'},
@@ -52,26 +54,46 @@ public class Labirinto {
 
 
 
-    private int linhaInicial = 4;
-    private int colunaInicial = 0;
-    private int linhaFinal = 21;
-    private int colunaFinal = 49;
+   // private int linhaInicial = 4;
+   // private int colunaInicial = 0;
+   // private int linhaFinal = 21;
+   // private int colunaFinal = 49;
 
     public void imprimir() {
 
 
-        for (int i = 0; i < mapa.length; i++) {
-            for (int j = 0; j < mapa[i].length; j++) {
-                System.out.print(mapa[i][j]);
+        for (int i = 0; i < mapaMenor.length; i++) {
+            for (int j = 0; j < mapaMenor[i].length; j++) {
+                System.out.print(mapaMenor[i][j]);
             }
             System.out.println();
         }
     }
 
+    public void mover(){
 
+    }
 
+    public void resolver(){
+        Stack<Posicao> movimento = new Stack<Posicao>(10);
+        movimento.push(new Posicao(linhaInicial, colunaInicial));
+        while (!movimento.isEmpty()){
 
+            Posicao pos = movimento.peek();
 
+            if (mapaMenor[pos.getLinha()][pos.getColuna()] == 'T'){
+                IO.println("Resolvido");
+                break;
+            }
+
+            if (mover(movimento, )){
+
+            }
+
+            movimento.pop();
+
+        }
+    }
 
 
     public static void main(String[] args) {
