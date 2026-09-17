@@ -10,15 +10,16 @@ public class Expressao {
         String correto = "( ( ) ) – ( ( )( ) ) – ( ) ( )";
         String incorreto = ")( – ( ( ) ( – ) ) ( (";
         String incorreto2 = "( – ( ( ) ( – ) ) ( (";
+        String incorreto3 = "( – ( ( ) ( – ) )";
         verificar(correto);
         verificar(incorreto);
         verificar(incorreto2);
-        verificar("( – ( ( ) ( – ) )");
+        verificar(incorreto3);
     }
 
     private void verificar(String mensagem){
-        Stack pilhaAbreParenteses = new Stack<Character>(1);
-        Stack pilhaFechaParenteses = new Stack<Character>(1);
+        Stack<Character> pilhaAbreParenteses = new Stack<>(1);
+        Stack<Character> pilhaFechaParenteses = new Stack<>(1);
 
         mensagem = mensagem.trim();
 
