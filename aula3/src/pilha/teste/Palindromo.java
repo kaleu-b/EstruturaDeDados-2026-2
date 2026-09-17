@@ -7,18 +7,18 @@ public class Palindromo {
     void main(){
         Stack pilha = new Stack<Character>(1);
 
-        String mensagem = "arara";
+        String mensagem = "anotaram a data da maratona";
         StringBuilder palindromo = new StringBuilder();
 
-        for (int i = mensagem.length()-1; i >= 0 ; i--) {
+        for (int i = 0; i < mensagem.length() ; i++) {
             pilha.push(mensagem.charAt(i));
         }
 
-        for (int i = 0; i < mensagem.length(); i++) {
+        for (int i = 0; i <= mensagem.length()-1; i++) {
             palindromo.append(pilha.pop());
         }
-
-        IO.println("mensagem original: " + mensagem + "palindromo: " + palindromo.toString() + "É palindromo " + (palindromo.toString().equalsIgnoreCase(mensagem) ? "Sim":"Não") );
+        // usando replace all para remover os espaços e comparar as strings
+        IO.println("mensagem original: " + mensagem + "palindromo: " + palindromo.toString() + "É palindromo " + (palindromo.toString().replaceAll("\\s+", "").equalsIgnoreCase(mensagem.replaceAll("\\s+", "")) ? "Sim":"Não") );
 
     }
 
