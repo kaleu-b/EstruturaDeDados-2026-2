@@ -31,7 +31,21 @@ public class Labirinto {
                 {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*'}
         };
 
-        // Posição inicial (linha, coluna)
+    private char[][] mapaMenorImpossivelSemParedes = {
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'P',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}
+    };
+
+
+    // Posição inicial (linha, coluna)
         private int linhaInicial = 1;
         private int colunaInicial = 0;
 
@@ -102,7 +116,7 @@ public class Labirinto {
         }
         IO.print("\n");
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -110,9 +124,9 @@ public class Labirinto {
 
     public char mover(char[][] mapa, int linha, int coluna){
         // se for fora das barreiras do mapa, volta '*' para parede
-        if(linha < 0 || linha > mapa.length){
+        if(linha < 0 || linha >= mapa.length){
             return '*';
-        } else if (coluna < 0 || coluna > mapa[linha].length) {
+        } else if (coluna < 0 || coluna >= mapa[linha].length) {
             return '*';
         }
         return mapa[linha][coluna];
@@ -192,6 +206,9 @@ public class Labirinto {
         labirinto.linhaFinal = 21;
         labirinto.colunaFinal = 49;
         labirinto.resolver(labirinto.mapaMaior);
-        labirinto.resolver(labirinto.mapaMaiorImpossivel);
+
+        labirinto.linhaInicial = 1;
+        labirinto.colunaInicial = 0;
+        labirinto.resolver(labirinto.mapaMenorImpossivelSemParedes);
     }
 }
