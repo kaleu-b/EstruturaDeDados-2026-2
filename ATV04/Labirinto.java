@@ -97,20 +97,20 @@ public class Labirinto {
                 return;
             }
 
-            char esquerda = mover(mapa, linhaAtual, (colunaAtual+1));
-            char direita = mover(mapa, linhaAtual, (colunaAtual-1));
+            char esquerda = mover(mapa, linhaAtual, (colunaAtual-1));
+            char direita = mover(mapa, linhaAtual, (colunaAtual+1));
             char cima = mover(mapa, (linhaAtual-1), colunaAtual);
             char baixo = mover(mapa,(linhaAtual+1), colunaAtual);
             // se a esquerda for espaço vazio ou o fim do labirinto
             if (esquerda == ' ' || esquerda == 'T'){
-                movimento.push(new Posicao(linhaAtual, (colunaAtual+1), esquerda));
-                if(esquerda != 'T') mapa[linhaAtual][colunaAtual+1] = '+';
+                movimento.push(new Posicao(linhaAtual, (colunaAtual-1), esquerda));
+                if(esquerda != 'T') mapa[linhaAtual][colunaAtual-1] = '+';
                 continue;
             }
             // se direita for espaço vazio ou o fim do labirinto
             if (direita == ' ' || direita == 'T'){
-                movimento.push(new Posicao(linhaAtual, colunaAtual-1, direita));
-                if(direita != 'T') mapa[linhaAtual][colunaAtual-1] = '+';
+                movimento.push(new Posicao(linhaAtual, colunaAtual+1, direita));
+                if(direita != 'T') mapa[linhaAtual][colunaAtual+1] = '+';
                 continue;
             }
             // se cima for espaço vazio ou o fim do labirinto
