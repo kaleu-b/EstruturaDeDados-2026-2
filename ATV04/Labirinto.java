@@ -117,7 +117,7 @@ public class Labirinto {
         Stack<Posicao> movimento = new Stack<Posicao>(10);
         movimento.push(new Posicao(linhaInicial, colunaInicial, mapa[linhaInicial][colunaInicial]));
         // posições iniciais
-        int linhaAtual = linhaInicial, colunaAtual = colunaInicial;
+        int linhaAtual, colunaAtual;
 
         while (!movimento.isEmpty()){
             imprimir(mapa);
