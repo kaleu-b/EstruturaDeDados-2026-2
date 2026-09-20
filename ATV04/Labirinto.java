@@ -53,51 +53,94 @@ public class Labirinto {
     };
 
 
-
-   // private int linhaInicial = 4;
-   // private int colunaInicial = 0;
-   // private int linhaFinal = 21;
-   // private int colunaFinal = 49;
-
-    public void imprimir() {
+    public void imprimir(char[][] mapa) {
 
 
-        for (int i = 0; i < mapaMenor.length; i++) {
-            for (int j = 0; j < mapaMenor[i].length; j++) {
-                System.out.print(mapaMenor[i][j]);
+        for (int i = 0; i < mapa.length; i++) {
+            for (int j = 0; j < mapa[i].length; j++) {
+                System.out.print(mapa[i][j]);
             }
             System.out.println();
         }
+        IO.print("\n");
     }
 
-    public void mover(){
-
+    public char mover(char[][] mapa, int linha, int coluna){
+        // se for fora das barreiras do mapa, volta '*' para parede
+        if(linha < 0 || linha > mapa.length){
+            return '*';
+        } else if (coluna < 0 || coluna > mapa[linha].length) {
+            return '*';
+        }
+        return mapa[linha][coluna];
     }
 
-    public void resolver(){
+    public void resolver(char[][] mapa){
         Stack<Posicao> movimento = new Stack<Posicao>(10);
-        movimento.push(new Posicao(linhaInicial, colunaInicial));
+        movimento.push(new Posicao(linhaInicial, colunaInicial, mapa[linhaInicial][colunaInicial]));
+        // posições iniciais
+        int linhaAtual = linhaInicial, colunaAtual = colunaInicial;
+
         while (!movimento.isEmpty()){
+            imprimir(mapa);
 
+            //movimento = mover(mapa,linhaAtual, colunaAtual);
             Posicao pos = movimento.peek();
+            // atualizando a posição com base no elemento no topo da pilha.
+            linhaAtual = pos.getLinha();
+            colunaAtual = pos.getColuna();
+            // conteudo da ultima posicao da pilha
+            char conteudoPos = pos.getConteudo();
 
-            if (mapaMenor[pos.getLinha()][pos.getColuna()] == 'T'){
+            if (conteudoPos == 'T'){
                 IO.println("Resolvido");
-                break;
+                return;
             }
 
-            if (mover(movimento, )){
-
+            char esquerda = mover(mapa, linhaAtual, (colunaAtual+1));
+            char direita = mover(mapa, linhaAtual, (colunaAtual-1));
+            char cima = mover(mapa, (linhaAtual-1), colunaAtual);
+            char baixo = mover(mapa,(linhaAtual+1), colunaAtual);
+            // se a esquerda for espaço vazio ou o fim do labirinto
+            if (esquerda == ' ' || esquerda == 'T'){
+                movimento.push(new Posicao(linhaAtual, (colunaAtual+1), esquerda));
+                if(esquerda != 'T') mapa[linhaAtual][colunaAtual+1] = '+';
+                continue;
             }
-
+            // se direita for espaço vazio ou o fim do labirinto
+            if (direita == ' ' || direita == 'T'){
+                movimento.push(new Posicao(linhaAtual, colunaAtual-1, direita));
+                if(direita != 'T') mapa[linhaAtual][colunaAtual-1] = '+';
+                continue;
+            }
+            // se cima for espaço vazio ou o fim do labirinto
+            if (cima == ' ' || cima == 'T'){
+                movimento.push(new Posicao(linhaAtual-1, colunaAtual, cima));
+                if(cima != 'T') mapa[linhaAtual-1][colunaAtual] = '+';
+                continue;
+            }
+            // se baixo for espaço livre ou o fim do labirinto
+            if (baixo == ' ' || baixo == 'T'){
+                movimento.push( new Posicao(linhaAtual+1, colunaAtual, baixo));
+                if(baixo != 'T') mapa[linhaAtual+1][colunaAtual] = '+';
+                continue;
+            }
+            // se não tiver pra onde mover, retirar as posições da pilha
             movimento.pop();
 
         }
+        if (movimento.isEmpty())IO.println("Caminho não encontrado. :(");
     }
 
 
     public static void main(String[] args) {
         Labirinto labirinto = new Labirinto();
-        labirinto.imprimir();
+        //labirinto.imprimir(labirinto.mapaMenor);
+        labirinto.resolver(labirinto.mapaMenor);
+        labirinto.linhaInicial = 4;
+        labirinto.colunaInicial = 0;
+        labirinto.linhaFinal = 21;
+        labirinto.colunaFinal = 49;
+        labirinto.resolver(labirinto.mapaMaior);
     }
 }

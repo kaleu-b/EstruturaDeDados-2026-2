@@ -11,7 +11,7 @@ public class Posicao implements Comparable<Posicao> {
         this.coluna = coluna;
     }
 
-    public Posicao(int coluna, int linha, char conteudo) {
+    public Posicao(int linha, int coluna, char conteudo) {
         this.coluna = coluna;
         this.linha = linha;
         this.conteudo = conteudo;
