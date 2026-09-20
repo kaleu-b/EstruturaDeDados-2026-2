@@ -101,6 +101,11 @@ public class Labirinto {
             System.out.println();
         }
         IO.print("\n");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public char mover(char[][] mapa, int linha, int coluna){
@@ -120,9 +125,8 @@ public class Labirinto {
         int linhaAtual, colunaAtual;
 
         while (!movimento.isEmpty()){
-            imprimir(mapa);
 
-            //movimento = mover(mapa,linhaAtual, colunaAtual);
+            // ultimo elemento da pilha
             Posicao pos = movimento.peek();
             // atualizando a posição com base no elemento no topo da pilha.
             linhaAtual = pos.getLinha();
@@ -134,6 +138,9 @@ public class Labirinto {
                 IO.println("Resolvido");
                 return;
             }
+            // ! representa a posição atual do ultimo elemento da pilha
+            if(conteudoPos != 'P') mapa[linhaAtual][colunaAtual] = '!';
+            imprimir(mapa);
 
             char esquerda = mover(mapa, linhaAtual, (colunaAtual-1));
             char direita = mover(mapa, linhaAtual, (colunaAtual+1));
@@ -143,27 +150,32 @@ public class Labirinto {
             if (esquerda == ' ' || esquerda == 'T'){
                 movimento.push(new Posicao(linhaAtual, (colunaAtual-1), esquerda));
                 if(esquerda != 'T') mapa[linhaAtual][colunaAtual-1] = '+';
+                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
                 continue;
             }
             // se direita for espaço vazio ou o fim do labirinto
             if (direita == ' ' || direita == 'T'){
                 movimento.push(new Posicao(linhaAtual, colunaAtual+1, direita));
                 if(direita != 'T') mapa[linhaAtual][colunaAtual+1] = '+';
+                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
                 continue;
             }
             // se cima for espaço vazio ou o fim do labirinto
             if (cima == ' ' || cima == 'T'){
                 movimento.push(new Posicao(linhaAtual-1, colunaAtual, cima));
                 if(cima != 'T') mapa[linhaAtual-1][colunaAtual] = '+';
+                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
                 continue;
             }
             // se baixo for espaço livre ou o fim do labirinto
             if (baixo == ' ' || baixo == 'T'){
                 movimento.push( new Posicao(linhaAtual+1, colunaAtual, baixo));
                 if(baixo != 'T') mapa[linhaAtual+1][colunaAtual] = '+';
+                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
                 continue;
             }
             // se não tiver pra onde mover, retirar as posições da pilha
+            if(conteudoPos != 'P')mapa[linhaAtual][colunaAtual] = '+';
             movimento.pop();
 
         }
