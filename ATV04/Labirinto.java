@@ -139,6 +139,8 @@ public class Labirinto {
         int linhaAtual, colunaAtual;
 
         while (!movimento.isEmpty()){
+            // dita se pode se mover ou se está preso
+            boolean podeMover = false;
 
             // ultimo elemento da pilha
             Posicao pos = movimento.peek();
@@ -147,13 +149,13 @@ public class Labirinto {
             colunaAtual = pos.getColuna();
             // conteudo da ultima posicao da pilha
             char conteudoPos = pos.getConteudo();
-
-            if (conteudoPos == 'T'){
+            // se posicao do topo da pilha for a saída
+            if (conteudoPos == 'T' && conteudoPos == mapa[linhaFinal][colunaFinal]){
                 IO.println("Resolvido");
                 return;
             }
             // ! representa a posição atual do ultimo elemento da pilha
-            if(conteudoPos != 'P') mapa[linhaAtual][colunaAtual] = '!';
+            if(conteudoPos != 'P' && conteudoPos != 'T') mapa[linhaAtual][colunaAtual] = '!';
             imprimir(mapa);
 
             char esquerda = mover(mapa, linhaAtual, (colunaAtual-1));
@@ -163,35 +165,27 @@ public class Labirinto {
             // se a esquerda for espaço vazio ou o fim do labirinto
             if (esquerda == ' ' || esquerda == 'T'){
                 movimento.push(new Posicao(linhaAtual, (colunaAtual-1), esquerda));
-                if(esquerda != 'T') mapa[linhaAtual][colunaAtual-1] = '+';
-                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
-                continue;
+                podeMover = true;
             }
             // se direita for espaço vazio ou o fim do labirinto
             if (direita == ' ' || direita == 'T'){
                 movimento.push(new Posicao(linhaAtual, colunaAtual+1, direita));
-                if(direita != 'T') mapa[linhaAtual][colunaAtual+1] = '+';
-                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
-                continue;
+                podeMover = true;
             }
             // se cima for espaço vazio ou o fim do labirinto
             if (cima == ' ' || cima == 'T'){
                 movimento.push(new Posicao(linhaAtual-1, colunaAtual, cima));
-                if(cima != 'T') mapa[linhaAtual-1][colunaAtual] = '+';
-                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
-                continue;
+                podeMover = true;
             }
             // se baixo for espaço livre ou o fim do labirinto
             if (baixo == ' ' || baixo == 'T'){
                 movimento.push( new Posicao(linhaAtual+1, colunaAtual, baixo));
-                if(baixo != 'T') mapa[linhaAtual+1][colunaAtual] = '+';
-                if (mapa[linhaAtual][colunaAtual] != 'P') mapa[linhaAtual][colunaAtual] = '+';
-                continue;
+                podeMover = true;
             }
-            // se não tiver pra onde mover, retirar as posições da pilha
-            if(conteudoPos != 'P')mapa[linhaAtual][colunaAtual] = '+';
-            movimento.pop();
-
+            // adicionar um + no caminho que passou
+            if(conteudoPos != 'P' && conteudoPos != 'T')mapa[linhaAtual][colunaAtual] = '+';
+            // se não tiver pra onde mover, retirar a última posição da pilha
+            if (!podeMover) movimento.pop();
         }
         if (movimento.isEmpty())IO.println("Caminho não encontrado. :(");
     }
@@ -199,7 +193,6 @@ public class Labirinto {
 
     public static void main(String[] args) {
         Labirinto labirinto = new Labirinto();
-        //labirinto.imprimir(labirinto.mapaMenor);
         labirinto.resolver(labirinto.mapaMenor);
         labirinto.linhaInicial = 4;
         labirinto.colunaInicial = 0;
@@ -209,6 +202,7 @@ public class Labirinto {
 
         labirinto.linhaInicial = 1;
         labirinto.colunaInicial = 0;
-        labirinto.resolver(labirinto.mapaMenorImpossivelSemParedes);
+
+        labirinto.resolver(labirinto.mapaMenorImpossivel);
     }
 }

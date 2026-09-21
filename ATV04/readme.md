@@ -13,5 +13,5 @@ resposta aqui
   # algoritmo no pior caso e justifique sua resposta.
 
 No pior caso, considerando que o labirinto tem L linhas e C colunas, e que tenha E espaços livres onde podemos navegar, levariámos O(E) por termos
-que navegar todos os espaços pelo menos uma vez. Se não tivéssemos as paredes, por exemplo, e o labirinto não tivesse saída, 
+que navegar todos os espaços pelo menos uma vez ou no máximo duas vezes (O(2*E), ou simplesmente O(E)). Se não tivéssemos as paredes, por exemplo, e o labirinto não tivesse saída, 
 percorreríamos todas as linhas e todas as colunas e a complexidade seria O(L * C).
