@@ -106,7 +106,7 @@ public class Labirinto {
     };
 
     public void imprimir(char[][] mapa) {
-
+        Stack<Integer> caminhoInteiro = new Stack<Integer>(50);
 
         for (int i = 0; i < mapa.length; i++) {
             for (int j = 0; j < mapa[i].length; j++) {
@@ -119,6 +119,15 @@ public class Labirinto {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        }
+        
+        // Imprimindo o caminho do inicio até o fim.
+        if (conteudoPos == 'T') {
+            while (!caminhoInteiro.isEmpty) {
+                Posicao caminho = caminhoInteiro.pop()
+                mapa[caminho.getLinha][caminho.getColuna] = '~'
+                imprimir(mapa)
+            }
         }
     }
 
