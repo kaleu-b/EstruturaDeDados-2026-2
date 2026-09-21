@@ -2,13 +2,13 @@
 # Explique, com suas palavras, o que acontece com a pilha quando o algoritmo:
 
 # 1. encontra uma nova posição que pode ser explorada;
-resposta aqui
+a nova posição é adicionada á pilha.
 # 2. chega a um caminho sem saída;
-resposta aqui
+é feito pops/desempilhar até encontrar a última bifurcação.
 # 3. precisa retornar a uma bifurcação;
-resposta aqui
+é por que foi encontrado um caminho sem saída e foi necessário retornar á bifurcação.
 # 4. encontra o destino.
-resposta aqui
+é feito um break e é imprimido o caminho do inicio até o fim.
   # Por fim, considerando um labirinto com L linhas e C colunas, determine a complexidade de tempo do 
   # algoritmo no pior caso e justifique sua resposta.
 
