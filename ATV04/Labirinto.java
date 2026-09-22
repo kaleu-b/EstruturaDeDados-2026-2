@@ -106,8 +106,6 @@ public class Labirinto {
     };
 
     public void imprimir(char[][] mapa) {
-        Stack<Integer> caminhoInteiro = new Stack<Integer>(50);
-
         for (int i = 0; i < mapa.length; i++) {
             for (int j = 0; j < mapa[i].length; j++) {
                 System.out.print(mapa[i][j]);
@@ -116,18 +114,9 @@ public class Labirinto {
         }
         IO.print("\n");
         try {
-            Thread.sleep(1000);
+            Thread.sleep(0000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
-        
-        // Imprimindo o caminho do inicio até o fim.
-        if (conteudoPos == 'T') {
-            while (!caminhoInteiro.isEmpty) {
-                Posicao caminho = caminhoInteiro.pop()
-                mapa[caminho.getLinha][caminho.getColuna] = '~'
-                imprimir(mapa)
-            }
         }
     }
 
@@ -142,6 +131,7 @@ public class Labirinto {
     }
 
     public void resolver(char[][] mapa){
+        // pilha que representa em que posições podemos nos mover
         Stack<Posicao> movimento = new Stack<Posicao>(10);
         movimento.push(new Posicao(linhaInicial, colunaInicial, mapa[linhaInicial][colunaInicial]));
         // posições iniciais
@@ -150,7 +140,6 @@ public class Labirinto {
         while (!movimento.isEmpty()){
             // dita se pode se mover ou se está preso
             boolean podeMover = false;
-
             // ultimo elemento da pilha
             Posicao pos = movimento.peek();
             // atualizando a posição com base no elemento no topo da pilha.
@@ -160,6 +149,22 @@ public class Labirinto {
             char conteudoPos = pos.getConteudo();
             // se posicao do topo da pilha for a saída
             if (conteudoPos == 'T' && conteudoPos == mapa[linhaFinal][colunaFinal]){
+                /*  do jeito como foi especificado no exercício (empilhar todas as 4 possibilidades
+                *   de movimentação simultaneamente ao invés da primeira que for constatada como
+                *   disponível), traçar um caminho do início ao fim de forma 100% correta não é possível.
+                *
+                *   se empilhássemos ou desempilhássemos somente uma por loop, ao invés de todas as possibilidades que poderão
+                *   ser ou não exploradas depois, traçar um caminho de início ao fim seria relativamente simples.
+                *
+                *   mas como empilhamos todas as possibilidades, mesmo se não formos explorar elas, mostrar um caminho
+                *   do início ao fim não é simples. nem com uma uma segunda pilha, que representa somente as posições atuais,
+                *   ela não mostra um caminho do início ao fim de forma correta.
+                * */
+                while (!movimento.isEmpty()){
+                    Posicao estrada = movimento.pop();
+                    mapa[estrada.getLinha()][estrada.getColuna()] = '~';
+                }
+                imprimir(mapa);
                 IO.println("Resolvido");
                 return;
             }
@@ -194,7 +199,7 @@ public class Labirinto {
             // adicionar um + no caminho que passou
             if(conteudoPos != 'P' && conteudoPos != 'T')mapa[linhaAtual][colunaAtual] = '+';
             // se não tiver pra onde mover, retirar a última posição da pilha
-            if (!podeMover) movimento.pop();
+            if (!podeMover)movimento.pop();
         }
         if (movimento.isEmpty())IO.println("Caminho não encontrado. :(");
     }
@@ -202,7 +207,7 @@ public class Labirinto {
 
     public static void main(String[] args) {
         Labirinto labirinto = new Labirinto();
-        labirinto.resolver(labirinto.mapaMenor);
+        //labirinto.resolver(labirinto.mapaMenor);
         labirinto.linhaInicial = 4;
         labirinto.colunaInicial = 0;
         labirinto.linhaFinal = 21;
@@ -212,6 +217,6 @@ public class Labirinto {
         labirinto.linhaInicial = 1;
         labirinto.colunaInicial = 0;
 
-        labirinto.resolver(labirinto.mapaMenorImpossivel);
+        //labirinto.resolver(labirinto.mapaMenorImpossivel);
     }
 }
