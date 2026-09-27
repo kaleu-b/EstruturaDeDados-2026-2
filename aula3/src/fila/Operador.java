@@ -6,6 +6,8 @@ public class Operador {
 
     private Atendimento atendimento;
 
+    private boolean ocioso;
+
     public String getNome() {
         return nome;
     }
@@ -13,4 +15,8 @@ public class Operador {
     public Atendimento getAtendimento() {
         return atendimento;
     }
+
+    public boolean getOcioso(){return this.ocioso;}
+
+    public void flipOcioso(){ocioso = !ocioso;}
 }
