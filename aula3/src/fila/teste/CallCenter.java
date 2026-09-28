@@ -8,8 +8,8 @@ public class CallCenter {
 // criar os 20 atendentes
 // a cada while, os 20 atendentes vão pegar um chamado se estiverem ociosos
 
-// a cada iteração, os 20 atendentes serão, de forma aleatória, "liberados" para
-// fazer um novo atendimento
+// a cada iteração, aleatoriamente, os atendentes serão ou não liberados para
+// atender alguém e serão adicionados a uma fila de atendentes ociosos
 
 
 }

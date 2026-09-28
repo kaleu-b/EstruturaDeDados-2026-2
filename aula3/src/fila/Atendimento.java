@@ -7,9 +7,14 @@ public class Atendimento {
     private int cod;
     private static int COD_ATENDIMENTO = 0;
 
-    public Atendimento(String nome, int telefone) {
-        this.nome = nome;
-        this.telefone = telefone;
+    public Atendimento() {
+        this.nome = "João de tal";
+        this.telefone = (int) (Math.random() * 1000);
         cod = ++COD_ATENDIMENTO;
+    }
+
+    @Override
+    public String toString() {
+        return "ATENDIMENTO: " + cod;
     }
 }

@@ -20,8 +20,16 @@ public class Teste0 {
 
         fila.imprimir();
 
-        fila.desenfileirar();
-        fila.desenfileirar();
+        IO.println(fila.desenfileirar());
+        IO.println(fila.desenfileirar());
+        fila.imprimir();
+
+        fila.enfileirar("K");
+        fila.enfileirar("L");
+
+        fila.imprimir();
+
+        fila.enfileirar("M");
         fila.imprimir();
     }
 }

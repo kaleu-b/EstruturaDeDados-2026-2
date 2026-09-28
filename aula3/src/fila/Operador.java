@@ -8,6 +8,11 @@ public class Operador {
 
     private boolean ocioso;
 
+    public Operador(Atendimento atendimento) {
+        this.atendimento = atendimento;
+        ocioso = false;
+    }
+
     public String getNome() {
         return nome;
     }
