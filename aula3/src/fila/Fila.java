@@ -8,18 +8,31 @@ public class Fila<T extends Comparable> {
     private T[] elementos;
 
     public Fila(int capacidade) {
-        // tail - onde remover
+        // tail - ponteiro que indica onde remover
         this.tail = 0;
-        // queueIndex - onde inserir
+        // queueIndex - ponteiro que indica onde inserir
         this.queueIndex = 0;
         this.tamanhoPreenchido = 0;
         this.elementos = (T[]) new Comparable[capacidade];
     }
 
+    private boolean isFull(){
+        return tamanhoPreenchido >= elementos.length;
+    }
+
+    public boolean isEmpty() {
+        return tamanhoPreenchido == 0;
+    }
+
     public void enfileirar(T elemento) {
 
-        if (tamanhoPreenchido == elementos.length) {
+        if (isFull()) {
             throw new RuntimeException("Fila cheia!!!!!!!!!!!");
+        }
+
+        if (isEmpty()){
+            queueIndex = 0;
+            tail = 0;
         }
 
         elementos[queueIndex] = elemento;
@@ -30,10 +43,6 @@ public class Fila<T extends Comparable> {
         }
 
         tamanhoPreenchido++;
-    }
-
-    private boolean isEmpty() {
-        return tamanhoPreenchido == 0;
     }
 
     public T desenfileirar() {

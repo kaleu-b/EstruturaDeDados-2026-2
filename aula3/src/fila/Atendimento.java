@@ -1,6 +1,6 @@
 package fila;
 
-public class Atendimento {
+public class Atendimento implements Comparable {
 
     private String nome;
     private int telefone;
@@ -11,6 +11,11 @@ public class Atendimento {
         this.nome = "João de tal";
         this.telefone = (int) (Math.random() * 1000);
         cod = ++COD_ATENDIMENTO;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 
     @Override

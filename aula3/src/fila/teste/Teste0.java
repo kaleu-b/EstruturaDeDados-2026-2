@@ -29,7 +29,15 @@ public class Teste0 {
 
         fila.imprimir();
 
+        fila.desenfileirar();
+        fila.desenfileirar();
+        fila.desenfileirar();
+        fila.desenfileirar();
+
+        fila.imprimir();
+
         fila.enfileirar("M");
+
         fila.imprimir();
     }
 }
