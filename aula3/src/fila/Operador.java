@@ -10,11 +10,11 @@ public class Operador implements Comparable {
 
     public Operador(Atendimento atendimento) {
         this.atendimento = atendimento;
-        ocioso = false;
+        ocioso = true;
     }
 
     public Operador(){
-        ocioso = false;
+        ocioso = true;
     }
 
     public String getNome() {

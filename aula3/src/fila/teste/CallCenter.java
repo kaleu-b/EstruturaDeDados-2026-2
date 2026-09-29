@@ -12,17 +12,48 @@ public class CallCenter {
 
     Fila<Atendimento> atendimentos;
     Vetor<Operador> atendentes;
-    Vetor<Operador> atendendentesDisponiveis;
+
+
 
     void main() {
 
     atendimentos = new Fila<>(1000);
-    atendentes = new Vetor<>(20);
+    // criar os 20 atendentes
+    atendentes = new Vetor<>(25);
 
+        for (int i = 0; i < 25; i++) {
+            //atendentes.inserir(new Operador());
+            atendentes.inserir(new Operador(), i);
+        }
+
+    Random r = new Random();
+
+    while (!atendimentos.isEmpty() || !atendimentos.isFull()){
+
+    int numAtendimentos;
+
+    numAtendimentos = r.nextInt(0,100);
+        IO.println("Adicionando " + numAtendimentos + "atendimentos");
+        for (int i = 0; i < numAtendimentos; i++) {
+            atendimentos.enfileirar(new Atendimento());
+        }
+        // adicionar atendimentos aos atendentes se eles estiverem ociosos
+        for (int i = 0; i < atendentes.obterTamanho(); i++) {
+            if (atendentes.get(i).getOcioso() && !atendimentos.isEmpty()){
+                atendentes.get(i).setAtendimento(atendimentos.desenfileirar());
+            }else {
+                if (Math.random() == 1){
+                    IO.println("Marcando atendente como ocioso");
+                    atendentes.get(i).flipOcioso();
+                }
+            }
+        }
 
     }
 
-// criar os 20 atendentes
+}
+
+
 // a cada while, os 20 atendentes vão pegar um chamado se estiverem ociosos
 
 // a cada iteração, aleatoriamente, os atendentes serão ou não liberados para

@@ -16,7 +16,7 @@ public class Fila<T extends Comparable> {
         this.elementos = (T[]) new Comparable[capacidade];
     }
 
-    private boolean isFull(){
+    public boolean isFull(){
         return tamanhoPreenchido >= elementos.length;
     }
 
