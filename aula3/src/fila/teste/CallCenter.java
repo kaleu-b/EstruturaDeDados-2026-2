@@ -17,9 +17,9 @@ public class CallCenter {
 
     void main() {
 
-    atendimentos = new Fila<>(1000);
+    atendimentos = new Fila<>(100);
     // criar os 20 atendentes
-    atendentes = new Vetor<>(25);
+    atendentes = new Vetor<>(10);
 
         for (int i = 0; i < 25; i++) {
             //atendentes.inserir(new Operador());
@@ -32,7 +32,7 @@ public class CallCenter {
 
     int numAtendimentos;
 
-    numAtendimentos = r.nextInt(0,100);
+    numAtendimentos = r.nextInt(0,20);
         IO.println("Adicionando " + numAtendimentos + "atendimentos");
         for (int i = 0; i < numAtendimentos; i++) {
             atendimentos.enfileirar(new Atendimento());
@@ -42,9 +42,10 @@ public class CallCenter {
             if (atendentes.get(i).getOcioso() && !atendimentos.isEmpty()){
                 atendentes.get(i).setAtendimento(atendimentos.desenfileirar());
             }else {
-                if (Math.random() == 1){
+                if (r.nextInt(0, 2) != 1){
                     IO.println("Marcando atendente como ocioso");
                     atendentes.get(i).flipOcioso();
+                    if (!atendimentos.isEmpty()) atendentes.get(i).setAtendimento(atendimentos.desenfileirar());
                 }
             }
         }

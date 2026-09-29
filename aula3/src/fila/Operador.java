@@ -27,6 +27,7 @@ public class Operador implements Comparable {
 
     public void setAtendimento(Atendimento atendimento) {
         this.atendimento = atendimento;
+        flipOcioso();
     }
 
     public boolean getOcioso(){return this.ocioso;}
