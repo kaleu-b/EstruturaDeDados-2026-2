@@ -38,10 +38,6 @@ public class Fila<T extends Comparable> {
         elementos[queueIndex] = elemento;
         queueIndex = ++queueIndex % elementos.length;
 
-        if (elementos[queueIndex] != null){
-            queueIndex = tail % elementos.length;
-        }
-
         tamanhoPreenchido++;
     }
 
@@ -52,10 +48,6 @@ public class Fila<T extends Comparable> {
         }
 
         T elemento = elementos[tail];
-
-        /*for (int i = 0; i < tamanhoPreenchido - 1; i++) {
-            elementos[i] = elementos[i + 1];
-        }*/
 
         elementos[tail] = null;
         tail = ++tail % elementos.length;
@@ -76,8 +68,8 @@ public class Fila<T extends Comparable> {
             IO.println("Fila vazia.");
         } else {
             IO.println("Fila: ");
-            for (int i = 0; i < tamanhoPreenchido; i++) {
-                IO.print(elementos[i] + ";");
+            for (T elemento : elementos) {
+                IO.print(elemento + ";");
             }
         }
     }
