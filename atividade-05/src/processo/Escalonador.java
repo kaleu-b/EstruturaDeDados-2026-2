@@ -24,35 +24,42 @@ public class Escalonador {
         return QUANTUM;
     }
 
+    public void adicionarProcesso(String nomeProcesso){
+        //tempo++;
+        if (tempo == 1) {
+            nomeProcesso = "P" + tempo;
+            processos.enfileirar(new Processo(nomeProcesso, 4, tempo));
+        } else if (tempo == 3) {
+            nomeProcesso = "P" + tempo;
+            processos.enfileirar(new Processo(nomeProcesso, 1, tempo));
+        } else if (tempo == 5) {
+            nomeProcesso = "P" + tempo;
+            processos.enfileirar(new Processo(nomeProcesso, 2, tempo));
+        }
+    }
+
     void main(){
         tempo = 0;
-        String nomeProcesso;
+        String nomeProcesso = "";
 
-        nomeProcesso = "P" + tempo;
-        processos.enfileirar(new Processo(nomeProcesso, 5, tempo));
+        //nomeProcesso = "P" + tempo;
+        processos.enfileirar(new Processo("P0", 5, tempo));
+        processos.enfileirar(new Processo("P1", 2, tempo));
 
         while (!processos.isEmpty()){
-            tempo++;
-            if (tempo == 1) {
-                nomeProcesso = "P" + tempo;
-                processos.enfileirar(new Processo(nomeProcesso, 2, tempo));
-            } else if (tempo == 3) {
-                nomeProcesso = "P" + tempo;
-                processos.enfileirar(new Processo(nomeProcesso, 4, tempo));
-            } else if (tempo == 5) {
-                nomeProcesso = "P" + tempo;
-                processos.enfileirar(new Processo(nomeProcesso, 2, tempo));
-            }
 
             Processo processo = processos.desenfileirar();
             processo.setStatus(Status.EXECUTANDO);
             for (int i = 0; i < QUANTUM; i++) {
+                tempo++;
+                adicionarProcesso(nomeProcesso);
                 if (processo.getInstruçõesRestantes() > 0){
                     IO.println("Processando: " + processo);
                     processo = processar(processo);
                 }else{
                     processo.setStatus(Status.FINALIZADO);
                     IO.println("Processo Finalizado: " + processo);
+                    break;
                 }
             }
 
