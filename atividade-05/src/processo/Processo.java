@@ -1,17 +1,22 @@
 package processo;
 
-public class Processo {
+public class Processo implements Comparable{
 
     private String nome;
     private int instruçõesRestantes;
     private int tempo;
     private Status status;
 
-    public Processo(String nome, int instrucoes, int tempo, Status status){
+    public Processo(String nome, int instrucoes, int tempo){
         this.nome = nome;
         this.instruçõesRestantes = instrucoes;
         this.tempo = tempo;
-        this.status = status;
+        this.status = Status.PRONTO;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 
     public String getNome() {
@@ -28,6 +33,7 @@ public class Processo {
 
     public void setInstruçõesRestantes(int instruçõesRestantes) {
         this.instruçõesRestantes = instruçõesRestantes;
+        AtualizaStatus();
     }
 
     public int getTempo() {
@@ -40,6 +46,13 @@ public class Processo {
 
     public Status getStatus() {
         return status;
+    }
+
+    public void AtualizaStatus() {
+        //muda o status do processo para finalizado se não tiver mais instruções
+        if (instruçõesRestantes <= 0){
+            status = Status.FINALIZADO;
+        }
     }
 
     public void setStatus(Status status) {
