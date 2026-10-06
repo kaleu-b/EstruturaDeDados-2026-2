@@ -3,13 +3,13 @@ package processo;
 public class Processo implements Comparable{
 
     private String nome;
-    private int instruçõesRestantes;
+    private int instrucoesRestantes;
     private int tempo;
     private Status status;
 
     public Processo(String nome, int instrucoes, int tempo){
         this.nome = nome;
-        this.instruçõesRestantes = instrucoes;
+        this.instrucoesRestantes = instrucoes;
         this.tempo = tempo;
         this.status = Status.PRONTO;
     }
@@ -27,13 +27,13 @@ public class Processo implements Comparable{
         this.nome = nome;
     }
 
-    public int getInstruçõesRestantes() {
-        return instruçõesRestantes;
+    public int getInstrucoesRestantes() {
+        return instrucoesRestantes;
     }
 
-    public void setInstruçõesRestantes(int instruçõesRestantes) {
-        this.instruçõesRestantes = instruçõesRestantes;
-        AtualizaStatus();
+    public void setInstrucoesRestantes(int instrucoesRestantes) {
+        this.instrucoesRestantes = instrucoesRestantes;
+        //AtualizaStatus();
     }
 
     public int getTempo() {
@@ -47,10 +47,11 @@ public class Processo implements Comparable{
     public Status getStatus() {
         return status;
     }
-
+    // método que atualiza o status do processo
+    // abandonado mas faz o que precisa
     public void AtualizaStatus() {
         //muda o status do processo para finalizado se não tiver mais instruções
-        if (instruçõesRestantes <= 0){
+        if (instrucoesRestantes <= 0){
             status = Status.FINALIZADO;
         }
     }
@@ -61,9 +62,9 @@ public class Processo implements Comparable{
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Processo{");
+        final StringBuilder sb = new StringBuilder("Processo: ");
         sb.append(" nome: ").append(nome).append('\'');
-        sb.append(" instruçõesRestantes: ").append(instruçõesRestantes);
+        sb.append(" instrucoesRestantes: ").append(instrucoesRestantes);
         sb.append(" tempo: ").append(tempo);
         sb.append(" status: ").append(status);
         sb.append("\n");
