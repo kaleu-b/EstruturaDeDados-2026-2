@@ -32,7 +32,7 @@ public class Escalonador {
             nomeProcesso = nomeProcesso + ++contadorProcesso;
             processos.enfileirar(new Processo(nomeProcesso, 1, tempo));
         } else if (tempo == 5) {
-            nomeProcesso += nomeProcesso + ++contadorProcesso;
+            nomeProcesso = nomeProcesso + ++contadorProcesso;
             processos.enfileirar(new Processo(nomeProcesso, 2, tempo));
         }
     }
