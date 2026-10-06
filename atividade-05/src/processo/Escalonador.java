@@ -7,7 +7,7 @@ public class Escalonador {
     Fila<Processo> processos;
     private final int QUANTUM = 2;
     private int tempo;
-    private int contadorProcesso = 2;
+    private int contadorProcesso = 3;
 
     public Escalonador(int capacidade){
         processos = new Fila<>(capacidade);
@@ -27,13 +27,13 @@ public class Escalonador {
         //tempo++;
         if (tempo == 1) {
             nomeProcesso = nomeProcesso + contadorProcesso;
-            processos.enfileirar(new Processo(nomeProcesso, 4, tempo));
-        } else if (tempo == 3) {
+            processos.enfileirar(new Processo(nomeProcesso, 5, tempo));
+        } else if (tempo == 2) {
             nomeProcesso = nomeProcesso + ++contadorProcesso;
-            processos.enfileirar(new Processo(nomeProcesso, 1, tempo));
-        } else if (tempo == 5) {
+            processos.enfileirar(new Processo(nomeProcesso, 6, tempo));
+        } else if (tempo == 4) {
             nomeProcesso = nomeProcesso + ++contadorProcesso;
-            processos.enfileirar(new Processo(nomeProcesso, 2, tempo));
+            processos.enfileirar(new Processo(nomeProcesso, 3, tempo));
         }
     }
 
@@ -41,8 +41,8 @@ public class Escalonador {
         tempo = 0;
         String nomeProcesso = "P";
 
-        processos.enfileirar(new Processo("P0", 5, tempo));
-        processos.enfileirar(new Processo("P1", 2, tempo));
+        processos.enfileirar(new Processo("P1", 7, tempo));
+        processos.enfileirar(new Processo("P2", 4, tempo));
 
         while (!processos.isEmpty()){
             // desenfileira o processo
